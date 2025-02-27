@@ -14,5 +14,5 @@ JetLag is a sleek and user-friendly flight booking website designed to provide a
 - **CSS3** – Styling and layout.
 - **JavaScript** – Interactive elements and dynamic features.
 
-## 📂 Project Structure
+
 
