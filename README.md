@@ -55,9 +55,9 @@ We believe **user experience** is not only about functionality but also about de
 
 ## 🛠️ Tech Stack
 
-- **HTML5** – Structuring the content.
-- **CSS3 (Tailwind/Bootstrap)** – Styling and layout.
-- **JavaScript (React/Vanilla JS)** – Interactive elements and dynamic features.
+- **HTML** – Structuring the content.
+- **CSS** – Styling and layout.
+- **JavaScript** – Interactive elements and dynamic features.
 
 ---
 
