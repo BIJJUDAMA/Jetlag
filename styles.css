@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+body{
+    background-image: url('background.webp');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f4f4f4;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden
+
+}
+
+.navbar {
+    font-family: 'Italiana';
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    color: rgba(221, 255, 0, 0.7);
+    padding: 10px 20px;
+    width: 100%;
+    position: relative; 
+    top:25px;   
+    font-weight: 700;
+    left:-30px;
+
+}
+
+.navlinks {
+    display: flex;
+    gap: 150px;
+    align-items: center;
+}
+
+
+.navlinks a {
+    color: rgba(221, 255, 0, 0.8);
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 8px; 
+    border-radius: 20px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.navlinks a:hover {
+    color: rgb(250, 250, 246);
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: scale(1.2); 
+}
+
