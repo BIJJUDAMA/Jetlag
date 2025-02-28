@@ -21,9 +21,12 @@ body{
     padding: 10px 20px;
     width: 100%;
     position: relative; 
-    top:25px;   
+    top:0px;   
     font-weight: 700;
     left:-30px;
+    background-color: black;
+    padding:15px;
+    right:0px;
 
 }
 
@@ -31,6 +34,7 @@ body{
     display: flex;
     gap: 150px;
     align-items: center;
+    padding:20px;
 }
 
 
@@ -49,3 +53,34 @@ body{
     transform: scale(1.2); 
 }
 
+.booking-form {
+    display: flex;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    width:100%;
+    right:0px;
+    left:0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding:23px;
+    justify-content: center;
+    margin-top:20rem;
+    font-family: 'Italiana';
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.booking-form button {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.booking-form button:hover {
+    background-color: #0056b3;
+}
