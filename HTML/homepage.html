@@ -1,7 +1,8 @@
 <html>
     <head>
         <title>JETLAG</title>
-        <link rel="stylesheet" href="CSS/homepage.css">
+        <link rel="stylesheet" href="../CSS/homepage.css">
+
 
     </head>
     <body>
@@ -16,18 +17,36 @@
                 <a href="support.html">Support</a>
             </div>
         </div>
-        <form class="booking-form">
-            <input type="text" placeholder="From" required>
-            <input type="text" placeholder="To" required>
-            <input type="date" required>
-            <select required>
-                <option value="economy">Economy</option>
-                <option value="business">Business</option>
-                <option value="first">First Class</option>
-            </select>
-            <input type="number" placeholder="Passengers" min="1" required>
-            <button type="submit" target="search_results.html">Book Now</button>
+        <form action="search_results.html" method="GET" class="booking-form">
+            <!-- First row: From & To -->
+            <div class="form-row">
+                <input type="text" placeholder="From" required>
+                <input type="text" placeholder="To" required>
+            </div>
+        
+            <!-- Second row: Date (full width) -->
+            <div class="form-row full-width">
+                <input type="date" required>
+            </div>
+        
+            <!-- Third row: Class & Passengers -->
+            <div class="form-row">
+                <select required>
+                    <option value="" disabled selected>Class</option>
+                    <option value="economy">Economy</option>
+                    <option value="business">Business</option>
+                    <option value="first">First Class</option>
+                </select>
+                <input type="number" placeholder="Passengers" min="1" required>
+            </div>
+        
+            <!-- Fourth row: Submit button (full width) -->
+            <div class="form-row full-width">
+                <button type="submit">Book Now</button>
+            </div>
         </form>
+        
+        
         
     </body>
 </html>

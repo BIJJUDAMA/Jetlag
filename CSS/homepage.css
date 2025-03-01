@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
 body{
-    background-image: url('Images/homepage_bg.webp');
+    background-image: url('../Images/homepage_bg.webp');
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -14,34 +14,31 @@ body{
 
 .navbar {
     font-family: 'Italiana';
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    color: rgba(221, 255, 0, 0.7);
+    justify-content: center;
+    display: flex; 
     padding: 10px 20px;
     width: 100%;
     position: relative; 
-    top:0px;   
+    top:30px;   
     font-weight: 700;
-    left:-30px;
-    background-color: black;
-    padding:15px;
-    right:0px;
+    left:200px
 
 }
 
 .navlinks {
     display: flex;
-    gap: 150px;
+    gap: 30px;
     align-items: center;
     padding:20px;
+    left:1000px
+    
 }
 
 
 .navlinks a {
-    color: rgba(221, 255, 0, 0.8);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     padding: 8px; 
     border-radius: 20px;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -49,38 +46,89 @@ body{
 
 .navlinks a:hover {
     color: rgb(250, 250, 246);
-    background-color: rgba(0, 0, 0, 0.2);
     transform: scale(1.2); 
 }
 
+/* General form styling */
 .booking-form {
     display: flex;
-    gap: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    width:100%;
-    right:0px;
-    left:0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding:23px;
-    justify-content: center;
-    margin-top:20rem;
-    font-family: 'Italiana';
+    flex-direction: column;
+    gap: 15px;
+    width: 25rem; /* Adjust width */
+    position: absolute;
+    left: 9rem; /* Align to left */
+    top: 18rem; /* Adjust vertical position */
+    background: rgba(255, 255, 255, 0.2); /* White-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px); /* Modern glass effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Italiana', sans-serif;
 }
 
+/* Rows inside form */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Full-width rows */
+.form-row.full-width {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input, Select, and Button styling */
 .booking-form input,
 .booking-form select,
 .booking-form button {
-    padding: 10px;
-    border: 1px solid #ccc;
+    flex: 1;
+    padding: 12px;
+    border: 1px solid gold;
     border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: gold;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: 'Italiana', sans-serif;
 }
 
+/* Placeholder text styling */
+.booking-form input::placeholder {
+    color: gold;
+    opacity: 0.8;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Button styling */
 .booking-form button {
-    background-color: #007BFF;
-    color: white;
+    background-color: rgba(255, 217, 0, 0.4);
+    color: #1a1a1a; /* Dark contrast for readability */
     cursor: pointer;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border: none;
+    width: 100%; /* Make button span full width */
+    transition: all 0.3s ease;
 }
 
+/* Button hover effect */
 .booking-form button:hover {
-    background-color: #0056b3;
+    background-color: rgb(255, 215, 0); /* Brighter gold */
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .booking-form {
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
 }
