@@ -21,65 +21,79 @@ body{
     position: relative; 
     top:30px;   
     font-weight: 700;
-    left:200px
+    left:250px;
 
 }
 
 .navlinks {
     display: flex;
-    gap: 30px;
+    gap: 10px;
     align-items: center;
     padding:20px;
-    left:1000px
-    
 }
 
 
 .navlinks a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    font-size: 1.15rem;
+    font-size: 1.13rem;
     padding: 8px; 
     border-radius: 20px;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    letter-spacing: 2.5px;
 }
 
 .navlinks a:hover {
     color: rgb(250, 250, 246);
     transform: scale(1.2); 
+    text-decoration: underline;
 }
 
-/* General form styling */
+.logo {
+    font-family: 'Italiana';
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0px;
+    top: 1.40rem;
+    color:rgb(255, 255, 255);
+}
 .booking-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 25rem; /* Adjust width */
+    width: 25rem;
     position: absolute;
-    left: 9rem; /* Align to left */
-    top: 18rem; /* Adjust vertical position */
-    background: rgba(255, 255, 255, 0.2); /* White-transparent background */
+    left: 7rem; 
+    top: 12rem; 
+    background: rgba(255, 255, 255, 0.2); 
     padding: 20px;
     border-radius: 10px;
-    backdrop-filter: blur(10px); /* Modern glass effect */
+    backdrop-filter: blur(10px); 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-family: 'Italiana', sans-serif;
+    font-family: 'Italiana';
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Rows inside form */
+
 .form-row {
     display: flex;
     justify-content: space-between;
     gap: 10px;
 }
 
-/* Full-width rows */
+
 .form-row.full-width {
     display: flex;
     flex-direction: column;
 }
 
-/* Input, Select, and Button styling */
+
 .booking-form input,
 .booking-form select,
 .booking-form button {
@@ -93,8 +107,10 @@ body{
     font-size: 1rem;
     font-family: 'Italiana', sans-serif;
 }
-
-/* Placeholder text styling */
+.booking-form select option{
+    background-color:rgba(255, 255, 255, 0.2); 
+    color:rgb(0, 0, 0)
+}
 .booking-form input::placeholder {
     color: gold;
     opacity: 0.8;
@@ -102,25 +118,25 @@ body{
     justify-content: center;
 }
 
-/* Button styling */
+
 .booking-form button {
     background-color: rgba(255, 217, 0, 0.4);
-    color: #1a1a1a; /* Dark contrast for readability */
+    color: #1a1a1a;
     cursor: pointer;
     font-size: 1.2rem;
     text-transform: uppercase;
     border: none;
-    width: 100%; /* Make button span full width */
+    width: 100%; 
     transition: all 0.3s ease;
 }
 
-/* Button hover effect */
+
 .booking-form button:hover {
-    background-color: rgb(255, 215, 0); /* Brighter gold */
+    background-color: rgb(255, 215, 0); 
     transform: scale(1.05);
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     .booking-form {
         width: 90%;
