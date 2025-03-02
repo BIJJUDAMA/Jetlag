@@ -1,53 +1,57 @@
-<html>
-    <head>
-        <title>JETLAG</title>
-        <link rel="stylesheet" href="../CSS/homepage.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JETLAG</title>
+    <link rel="stylesheet" href="../CSS/homepage.css">
+</head>
+<body>
+    <!-- Toggle Switch -->
+    <div class="theme-toggle">
+        <label class="switch">
+            <input type="checkbox" id="theme-switch">
+            <span class="slider round"></span>
+        </label>
+        <span id="theme-label">Dark Mode</span>
+    </div>
 
-
-    </head>
-    <body>
-
-        <div class="navbar">
-            <div class="logo">JETLAG</div>
-            <div class="navlinks">
-                <a href="homepage.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="flight_status.html">Flight Status</a>
-                <a href="contact.html">Contact</a>
-                <a href="support.html">Support</a>
-            </div>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">JETLAG</div>
+        <div class="navlinks">
+            <a href="homepage.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="flight_status.html">Flight Status</a>
+            <a href="contact.html">Contact</a>
+            <a href="support.html">Support</a>
         </div>
-        <form action="search_results.html" method="GET" class="booking-form">
-            <h1>BOOK YOUR NEXT FLIGHT</h1>
-            <!-- First row: From & To -->
-            <div class="form-row">
-                <input type="text" placeholder="From" required>
-                <input type="text" placeholder="To" required>
-            </div>
-        
-            <!-- Second row: Date (full width) -->
-            <div class="form-row full-width">
-                <input type="date" required>
-            </div>
-        
-            <!-- Third row: Class & Passengers -->
-            <div class="form-row">
-                <select required>
-                    <option value="" disabled selected>Class</option>
-                    <option value="economy">Economy</option>
-                    <option value="business">Business</option>
-                    <option value="first">First Class</option>
-                </select>
-                <input type="number" placeholder="Passengers" min="1" required>
-            </div>
-        
-            <!-- Fourth row: Submit button (full width) -->
-            <div class="form-row full-width">
-                <button type="submit">Book Now</button>
-            </div>
-        </form>
-        
-        
-        
-    </body>
+    </div>
+
+    <!-- Booking Form -->
+    <form action="search_results.html" method="GET" class="booking-form">
+        <h1>BOOK YOUR NEXT FLIGHT</h1>
+        <div class="form-row">
+            <input type="text" placeholder="From" required>
+            <input type="text" placeholder="To" required>
+        </div>
+        <div class="form-row full-width">
+            <input type="date" required>
+        </div>
+        <div class="form-row">
+            <select required>
+                <option value="" disabled selected>Class</option>
+                <option value="economy">Economy</option>
+                <option value="business">Business</option>
+                <option value="first">First Class</option>
+            </select>
+            <input type="number" placeholder="Passengers" min="1" required>
+        </div>
+        <div class="form-row full-width">
+            <button type="submit">Book Now</button>
+        </div>
+    </form>
+
+    <script src="../JS/theme-toggle.js"></script>
+</body>
 </html>
