@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
 body{
-    background-image: url('../Images/homepage_bg.webp');
+    background-image: url('../Images/black.jpg');
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -78,6 +78,7 @@ body{
     backdrop-filter: blur(10px); 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     font-family: 'Italiana';
+    transition: transform 0.3s ease-out, color 0.3s ease-out;
     animation: fadeIn 1s ease-in-out;
 }
 
@@ -100,20 +101,21 @@ body{
 .booking-form button {
     flex: 1;
     padding: 12px;
-    border: 1px solid gold;
+    border: 1px solid #d4af37;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.1);
-    color: gold;
+    color: #d4af37;
     font-weight: 700;
     font-size: 1rem;
     font-family: 'Italiana', sans-serif;
 }
 .booking-form select option{
     background-color:rgba(255, 255, 255, 0.2); 
-    color:rgb(0, 0, 0)
+    color:#d4af37;
+    border-color: #f4f4f4;
 }
 .booking-form input::placeholder {
-    color: gold;
+    color: #d4af37;
     opacity: 0.8;
     align-items: center;
     justify-content: center;
@@ -148,4 +150,23 @@ body{
     .form-row {
         flex-direction: column;
     }
+}
+
+.booking-form:hover {
+    transform: scale(1.07);
+    color:#f6f5f4
+}
+
+.booking-form h1{
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #d4af37;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    justify-content: center;
+}
+
+.booking-form input:hover,
+.booking-form select:hover {
+    border-color: white 
 }
