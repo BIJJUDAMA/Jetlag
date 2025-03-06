@@ -3,7 +3,7 @@
 /* Root Variables for Light & Dark Mode */
 :root {
     --bg-color: #f4f4f4;
-    --background-image: url('../Images/light.jpg');
+    --background-image: url('../Images/homepage_bg.webp');
     --text-color: #1a1a1a;
     --form-bg: rgba(255, 255, 255, 0.6);
     --form-border: #d4af37;
