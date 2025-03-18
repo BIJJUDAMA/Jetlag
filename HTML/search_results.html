@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - JETLAG</title>
+    <link rel="stylesheet" href="../CSS/search_result.css">
+</head>
+<body>
+    <div class="search-results">
+        <h1>Flight Search Results</h1>
+        <div id="results-container"></div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const resultsContainer = document.getElementById("results-container");
+        
+        const from = params.get("from") || "Not specified";
+        const to = params.get("to") || "Not specified";
+        const date = params.get("date") || "Not specified";
+        const flightClass = params.get("class") || "Not specified";
+        const passengers = params.get("passengers") || "Not specified";
+    </script>
+
+<p>From: <span id="display-from"></span></p>
+<p>To: <span id="display-to"></span></p>
+<p>Date: <span id="display-date"></span></p>
+<p>Class: <span id="display-class"></span></p>
+<p>Passengers: <span id="display-passengers"></span></p>
+</body>
+
+
+</html>

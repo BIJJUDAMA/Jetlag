@@ -11,37 +11,37 @@
             <div class="logo">JETLAG</div>
             <div class="navlinks">
                 <a href="homepage.html">Home</a>
-                <a href="about.html">About</a>
                 <a href="flight_status.html">Flight Status</a>
+                <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
                 <a href="support.html">Support</a>
             </div>
         </div>
         <form action="search_results.html" method="GET" class="booking-form">
             <h1>BOOK YOUR NEXT FLIGHT</h1>
-            <!-- First row: From & To -->
+            
             <div class="form-row">
-                <input type="text" placeholder="From" required>
-                <input type="text" placeholder="To" required>
+                <input type="text" name="from" placeholder="From" required>
+                <input type="text" name="to" placeholder="To" required>
             </div>
         
-            <!-- Second row: Date (full width) -->
+            
             <div class="form-row full-width">
-                <input type="date" required>
+                <input type="date" name="date" required>
             </div>
         
-            <!-- Third row: Class & Passengers -->
+           
             <div class="form-row">
-                <select required>
+                <select name="class" required>
                     <option value="" disabled selected>Class</option>
                     <option value="economy">Economy</option>
                     <option value="business">Business</option>
                     <option value="first">First Class</option>
                 </select>
-                <input type="number" placeholder="Passengers" min="1" required>
+                <input type="number" name="passengers" placeholder="Passengers" min="1" required>
             </div>
         
-            <!-- Fourth row: Submit button (full width) -->
+            
             <div class="form-row full-width">
                 <button type="submit">Book Now</button>
             </div>
