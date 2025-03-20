@@ -1,4 +1,4 @@
-# ✈️ JetLag - Flight Booking Website (Frontend)
+# ✈️ JetLag - Flight Booking Website Design
 
 JetLag is a sleek and user-friendly flight booking website designed to provide a seamless browsing experience for travelers. This project focuses on the frontend, offering an intuitive UI for searching and selecting flights.
 
