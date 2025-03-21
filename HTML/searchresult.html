@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flight Search Results</title>
+    <link rel="stylesheet" href="../CSS/searchresult.css">
+    <script src="../JS/searchresult.js"></script>
 </head>
-<body>
-    
+<body onload="getQueryParams()">
+    <h1>Flight Search Results</h1>
+    <div class="result-container">
+        <p><strong>From:</strong> <span id="from"></span></p>
+        <p><strong>To:</strong> <span id="to"></span></p>
+        <p><strong>Date:</strong> <span id="date"></span></p>
+        <p><strong>Class:</strong> <span id="class"></span></p>
+        <p><strong>Passengers:</strong> <span id="passengers"></span></p>
+    </div>
 </body>
 </html>

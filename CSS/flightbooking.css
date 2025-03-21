@@ -86,7 +86,7 @@ body {
 
 .booking-form button:hover {
     background-color: rgba(238, 117, 111, 1);   
-    transform: scale(1.1);
+    transform: scale(1.03);
 }
 
 @media (max-width: 768px) {
