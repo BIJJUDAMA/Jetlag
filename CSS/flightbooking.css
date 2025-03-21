@@ -1,12 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
 
-body, html {
+html, body {
     height: 100%;
     margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('../Images/world-monuments.gif'); /* Ensure correct path */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f4f4f4; /* Adjust background as needed */
+    background-color: rgba(139, 209, 242, 255);
+    font-family: 'Red Hat Display', sans-serif;
 }
 
 .booking-form {
@@ -25,7 +34,7 @@ body, html {
 }
 
 .booking-form:hover {
-    scale: 1.07;  /* Expands without shifting */
+    scale: 1.07;  
 }
 
 .form-row {
@@ -76,7 +85,7 @@ body, html {
 }
 
 .booking-form button:hover {
-    background-color: rgba(238, 117, 111, 1);
+    background-color: rgba(238, 117, 111, 1);   
     transform: scale(1.1);
 }
 
