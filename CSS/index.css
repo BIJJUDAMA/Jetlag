@@ -17,23 +17,36 @@ body {
     height: 100vh;
     font-family: 'Red Hat Display', sans-serif;
     z-index: 9999;
-    animation: holdThenFade 3s ease-in-out forwards;
+    animation: holdThenFade 2.5s ease-in-out forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.preloader h1{
+.preloader h1 {
     font-size: 6rem;
     margin: 0;
-    position: absolute;
-    top: 30.5rem;
-    left:0;
-    right: 0;
-    color: #001F3F;
+    color: #b0c4de;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block; 
+    width: 0;
+    animation: typing 1s steps(30, end) forwards;
 }
 
-/* Hold for 2.5s, then fade out over 1.5s */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+
 @keyframes holdThenFade {
-    0% { opacity: 1; }  /* Fully visible */
-    62.5% { opacity: 1; } /* Hold for ~2.5s */
-    100% { opacity: 0; visibility: hidden; } /* Fade out over 1.5s */
+    0% { opacity: 1; }  
+    62.5% { opacity: 1; } 
+    100% { opacity: 0; visibility: hidden; } 
 }
 
 header {
@@ -81,7 +94,8 @@ nav ul li a {
 nav ul li a:hover {
     color: rgb(250, 250, 246);
     transform: scale(1.2); 
-    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: rgb(250, 250, 246);
 }
 
 .block {
@@ -90,7 +104,7 @@ nav ul li a:hover {
     background-repeat: no-repeat;
     background-position: center;
     padding: 70px 20px;
-    height: 18rem; 
+    height: 19.2rem; 
     overflow-y: hidden; 
 }
 .block-content{
@@ -112,4 +126,10 @@ nav ul li a:hover {
     margin-top: 15px;
     border-radius: 5px;
     font-weight: bold;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn:hover {
+    transform: scale(1.2);
+    
 }
