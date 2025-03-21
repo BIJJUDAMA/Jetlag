@@ -1,10 +1,10 @@
-# ✈️ JetLag - Flight Booking Website (Frontend)
+# ✈️ JetLag - Flight Booking Website Design
 
 JetLag is a sleek and user-friendly flight booking website designed to provide a seamless browsing experience for travelers. This project focuses on the frontend, offering an intuitive UI for searching and selecting flights.
 
 ## 📝 Introduction
 
-Creating a flight booking website using **HTML, CSS, and JavaScript** involves crafting a platform that is both functional and visually appealing. Drawing inspiration from the **Air India** website, JetLag aims to provide a **user-centric** flight booking experience with a focus on **design, functionality, and usability**.
+Creating a flight booking website using **HTML, CSS, and JavaScript** involves crafting a platform that is both functional and visually appealing. JetLag aims to provide a **user-centric** flight booking experience with a focus on **design, functionality, and usability**.
 
 The **Home Page** will serve as the entry point, featuring a prominently displayed **search bar** where users can enter travel details such as **departure and arrival locations, dates, and passenger numbers**. Alongside this, visually engaging **banners** will highlight special promotions or travel deals, enhancing both aesthetic appeal and practical value.
 
