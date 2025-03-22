@@ -13,9 +13,9 @@ function generateRandomFlights() {
     const flightContainer = document.getElementById('flight-options');
     flightContainer.innerHTML = ""; // Clear previous data
 
-    const airlines = ["Air India", "IndiGo", "Emirates", "Qatar Airways", "Lufthansa"];
+    const airlines = ["AeroVista", "Nimbus Jet", "Skyborne Airlines", "SwiftSky Jet", "AeroGlide", "SkyJet", "AirWing", "CloudWing", "SkyVoyage", "AeroCloud"];
     const amenities = ["🥤", "🍽️", "🎧", "💺", "📶"];
-    const numFlights = 5; // Generate 5 random flights
+    const numFlights = 6; 
 
     for (let i = 0; i < numFlights; i++) {
         const airline = airlines[Math.floor(Math.random() * airlines.length)];
