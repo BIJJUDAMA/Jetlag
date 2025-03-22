@@ -4,20 +4,37 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background: rgba(17, 65, 141, 1);
 }
 
 body {
     background-image: url('../Images/globe.gif');
-    background-position: center;
+    background-position: top center;
+    background-size: cover; /* Ensures the entire image fits */
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensures body is at least full viewport height */
+}
+
+
+.preloader {
+    background-image: url('../Images/globe-loading.gif');
     background-size: cover;
     background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(139, 209, 242, 255);
-    font-family: 'Red Hat Display', sans-serif;
-    padding: 0;
+    background-position: center;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    animation: holdThenFade 3.7s ease-in-out forwards;
+    background-color: rgba(17, 65, 141, 1);
 }
+
+@keyframes holdThenFade {
+    0% { opacity: 1; }  
+    62.5% { opacity: 1; } 
+    100% { opacity: 0; visibility: hidden; } 
+}
+
 
 .result-container {
     background: rgba(255, 255, 255, 0.15);
@@ -29,10 +46,18 @@ body {
     max-width: 25rem;
     width: 100%;
     margin: 1rem auto;
+    color:rgba(139,209,242);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    font-family: Red Hat Display, sans-serif;
+    transition: transform 0.3s ease-out, color 0.3s ease-out, scale 0.3s ease-out;
 }
 
 .sorting-options {
     margin: 20px 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-family: Red Hat Display, sans-serif;
 }
 
 .sorting-options button {
@@ -43,10 +68,15 @@ body {
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
+    transition: transform 0.3s ease-out, color 0.3s ease-out, scale 0.3s ease-out;
+    animation: fadeIn 1s ease-in-out;
+    font-family: Red Hat Display, sans-serif;
+    
 }
 
 .sorting-options button:hover {
     background-color: rgba(3, 60, 130, 1);
+    scale: 1.07;
 }
 
 #flight-options {
@@ -63,12 +93,16 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     max-width: 400px;
     width: 100%;
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.3s ease-out, color 0.3s ease-out, scale 0.3s ease-out;
+    animation: fadeIn 1s ease-in-out;
     flex: 1 1 calc(33.33% - 30px); /* Makes the cards responsive */
     max-width: 300px; /* Set max width */
     min-width: 250px; 
+    font-family: Red Hat Display, sans-serif;
 }
-
+.flight-card:hover {
+    scale: 1.07;  
+}
 .flight-summary {
     display: flex;
     flex-direction: column;
@@ -82,11 +116,19 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    transition: transform 0.3s ease-out, color 0.3s ease-out, scale 0.3s ease-out;
+    animation: fadeIn 1s ease-in-out;
+    font-family: Red Hat Display, sans-serif;
 }
 
+.details-btn:hover {
+    background-color: rgba(3, 60, 130, 1);
+    scale: 1.02;
+}
 .flight-details {
     display: none;
     margin-top: 10px;
+    font-family: Red Hat Display, sans-serif;
 }
 
 .flight-card.active .flight-details {
@@ -104,3 +146,6 @@ body {
         transform: translateY(0);
     }
 }
+
+
+

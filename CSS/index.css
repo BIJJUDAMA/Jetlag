@@ -65,7 +65,7 @@ header p {
 nav ul {
     list-style: none;
     padding: 5px;
-    background-color:  rgba(139,209,242,255);
+    background-color:  rgba(139,209,242);
     margin: 0;
     display: flex; 
     gap: 15px; 
