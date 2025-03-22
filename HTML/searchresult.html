@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Search Results</title>
     <link rel="stylesheet" href="../CSS/searchresult.css">
+    <link rel="icon" type="image/gif" href="../Images/airplane-small.png">
     <script src="../JS/searchresult.js"></script>
 </head>
 <body onload="getQueryParams()">
-    <h1>Flight Search Results</h1>
     <div class="result-container">
         <p><strong>From:</strong> <span id="from"></span></p>
         <p><strong>To:</strong> <span id="to"></span></p>
@@ -16,5 +16,17 @@
         <p><strong>Class:</strong> <span id="class"></span></p>
         <p><strong>Passengers:</strong> <span id="passengers"></span></p>
     </div>
+
+    <!-- Sorting Options -->
+    <div class="sorting-options">
+        <button onclick="sortFlights('time')">Sort by Time</button>
+        <button onclick="sortFlights('price')">Sort by Price</button>
+        <button onclick="sortFlights('duration')">Sort by Duration</button>
+        <button onclick="sortFlights('airline')">Sort by Airline</button>
+    </div>
+
+    <!-- Flight Options Container -->
+    <div id="flight-options"></div>
 </body>
 </html>
+    
