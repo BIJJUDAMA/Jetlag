@@ -8,7 +8,7 @@
     <link rel="icon" type="image/gif" href="../Images/airplane-small.png">
     <script src="../JS/searchresult.js"></script>
 </head>
-<div class="preloader"></div>
+<div class="preloader"><center><h1>SEARCHING<br>FOR  FLIGHTS</h1></center></div>
 <body onload="getQueryParams()">
     <div class="result-container">
         <p><strong>From:</strong> <span id="from"></span></p>
@@ -19,7 +19,7 @@
         <p>🥤:Drinks, 🍽️:Meals,  💺:Reclining Seats, 📶:Wifi</p>
     </div>
 
-    <!-- Sorting Options -->
+
     <div class="sorting-options">
         <button onclick="sortFlights('time')">Sort by Time</button>
         <button onclick="sortFlights('price')">Sort by Price</button>
@@ -27,7 +27,6 @@
         <button onclick="sortFlights('airline')">Sort by Airline</button>
     </div>
 
-    <!-- Flight Options Container -->
     <div id="flight-options"></div>
 </body>
 </html>

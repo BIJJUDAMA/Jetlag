@@ -13,7 +13,7 @@ function getQueryParams() {
 
 function generateRandomFlights() {
     const flightContainer = document.getElementById('flight-options');
-    flightContainer.innerHTML = ""; // Clear previous data
+    flightContainer.innerHTML = ""; 
 
     const airlines = ["AeroVista", "Nimbus Jet", "Skyborne Airlines", "SwiftSky Jet", "AeroGlide", "SkyJet", "AirWing", "CloudWing", "SkyVoyage", "AeroCloud"];
     const amenities = ["🥤", "🍽️", "💺", "📶"];
@@ -42,13 +42,19 @@ function generateRandomFlights() {
                 <p><strong>Duration:</strong> <span class="duration">${duration}</span></p>
                 <p><strong>Stops:</strong> ${stopover}</p>
                 <p><strong>Amenities:</strong> ${selectedAmenities}</p>
+                <button class="book-btn" onclick="bookFlight('${airline}', '${departureTime}', '${arrivalTime}', '${price}')">Book Now</button>
             </div>
         `;
         flightContainer.appendChild(flightCard);
     }
 }
 
-// Generates a random 12-hour time format (AM/PM)
+function bookFlight(airline, departure, arrival, price) {
+    const url = `payment.html?airline=${encodeURIComponent(airline)}&departure=${encodeURIComponent(departure)}&arrival=${encodeURIComponent(arrival)}&price=${encodeURIComponent(price)}`;
+    window.location.href = url;
+}
+
+
 function generateRandomTime() {
     let hour = Math.floor(Math.random() * 12) + 1;
     let minutes = Math.floor(Math.random() * 60).toString().padStart(2, "0");
@@ -56,14 +62,14 @@ function generateRandomTime() {
     return `${hour}:${minutes} ${period}`;
 }
 
-// Generates a random duration in hours and minutes
+
 function generateRandomDuration() {
     let hours = Math.floor(Math.random() * 10) + 1;
     let minutes = Math.floor(Math.random() * 60);
     return `${hours}h ${minutes}m`;
 }
 
-// Converts "hh:mm AM/PM" to Date object for sorting
+
 function parseTime(timeStr) {
     let [time, period] = timeStr.split(" ");
     let [hours, minutes] = time.split(":").map(Number);
@@ -72,7 +78,7 @@ function parseTime(timeStr) {
     return new Date(2000, 0, 1, hours, minutes); // Reference date for sorting
 }
 
-// Toggle flight details visibility
+
 function toggleDetails(button) {
     const flightCard = button.parentElement.parentElement;
     flightCard.classList.toggle("active");
@@ -98,7 +104,6 @@ function sortFlights(criteria) {
         }
     });
 
-    // Reorder sorted flights in the DOM
     flightContainer.innerHTML = "";
     flightCards.forEach(card => flightContainer.appendChild(card));
 }
