@@ -6,6 +6,10 @@ html, body {
     padding: 0;
     background: rgba(17, 65, 141, 1);
     font-family: 'Red Hat Display', sans-serif;
+    background-image: url('../Images/wavy-background.gif');
+    background-position: top center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 body {
