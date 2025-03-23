@@ -22,27 +22,36 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     position: fixed;
+    top: 0; /* Ensure it starts from the top */
+    left: 0;
     width: 100%;
     height: 100vh;
     z-index: 9999;
-    animation: holdThenFade 4.3s ease-in-out forwards;
+    display: flex; /* Center content properly */
+    justify-content: center;
     align-items: center;
-    
+    animation: holdThenFade 4.3s ease-in-out forwards;
 }
+
 .preloader h1 {
     font-size: 5rem;
     margin: 0;
+    word-spacing: 4px;
     color: #b0c4de;
     overflow: hidden;
     white-space: nowrap;
-    display: inline-block; 
+    display: inline-block;
     width: 0;
-    animation: typing 1.7s steps(30, end) forwards 1.5s;
-    font-family: Red Hat Display, sans-serif;
-    margin-top: 8rem;
-
+    animation: typing 1.4s steps(30, end) forwards 1.5s;
+    font-family: 'Red Hat Display', sans-serif;
 }
-@keyframes typing {
+
+@keyframes holdThenFade {
+    0% { opacity: 1; }  
+    62.5% { opacity: 1; } 
+    100% { opacity: 0; visibility: hidden; } 
+
+}@keyframes typing {
     from {
         width: 0;
     }
@@ -51,11 +60,6 @@ body {
     }
 }
 
-@keyframes holdThenFade {
-    0% { opacity: 1; }  
-    62.5% { opacity: 1; } 
-    100% { opacity: 0; visibility: hidden; } 
-}
 
 
 

@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
+
+body {
+    font-family: Redhat Display, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.preloader {
+    background-image: url('../Images/payment-confirmation.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: fixed;
+    top: 0; /* Ensure it starts from the top */
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    display: flex; /* Center content properly */
+    justify-content: center;
+    align-items: center;
+    animation: holdThenFade 4.2s ease-in-out forwards;
+}
+
+.preloader h1 {
+    font-size: 5rem;
+    margin-top: 27rem;
+    word-spacing: 4px;
+    color: #d0f746;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    width: 0;
+    animation: typing 1.3s steps(30, end) forwards 2s;
+    font-family: 'Red Hat Display', sans-serif;
+}
+@keyframes holdThenFade {
+    0% { opacity: 1; }  
+    62.5% { opacity: 1; } 
+    100% { opacity: 0; visibility: hidden; } 
+
+}@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+.confirmation-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    max-width: 450px;
+    width: 100%;
+}
+
+.flight-details, .search-details, .payment-details {
+    margin-top: 15px;
+    padding: 10px;
+    background: #e6f2ff;
+    border-radius: 5px;
+    text-align: left;
+}
+
+h3 {
+    margin-top: 20px;
+    color: #0056b3;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}

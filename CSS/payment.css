@@ -13,35 +13,54 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    font-family: 'Red Hat Display', sans-serif; /* Ensure body uses correct font */
 }
 
 .main--container {
+    font-family: 'Red Hat Display', sans-serif; /* Fixed inconsistency */
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Changed from column to row */
+    justify-content: center;
     align-items: center;
-    gap: 20px;
-    margin-top: 10rem; /* Pushes the entire content down */
+    width: 100%;
+    margin-top: 1rem; /* Pushes the entire content down */
 }
 
 .card--container {
-    background: rgba(139,209,242);
+    margin-right: 3rem; /* Moves card to the left */
+    margin-left: 5rem;
+    background-image: url('../Images/card-design.jpg');
+    background-size: cover;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     width: 350px;
-    margin-top: 3rem; /* Pushes the card down */
+    height: 12rem;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out; /* 🟢 Smooth transition applied */
+}
+
+.card--container:hover {
+    transform: scale(1.1);
 }
 
 .card {
-    width: 100%;
-    padding: 20px;
-    background-image: url('../Images/plane-background.jpg');
-    background-size: 100% 100%;
-    border-radius: 10px;
-    color: rgb(0, 0, 0);
     font-family: 'Red Hat Display', sans-serif;
-    font-weight: 700;
+    width: 100%;
+    height: 12rem;
+    padding: 20px;
+    background-image: url('../Images/card-design.jpg');
+    background-size: cover;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(255, 253, 253, 0.304);
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
+.card:hover {
+    transform: scale(1.05);
+}
+
 
 .front_top {
     display: flex;
@@ -52,7 +71,7 @@ body {
 
 .top_chip img, 
 .top_logo img {
-    width: 40px; /* Adjust size as needed */
+    width: 4rem; /* Adjust size as needed */
     height: auto;
     max-width: 100%;
 }
@@ -68,32 +87,46 @@ body {
 }
 
 .form-container {
+    font-family: 'Red Hat Display', sans-serif; /* Fixed inconsistency */
+    margin-left: 3rem; /* Moves form to the right */
+    margin-right: 5rem; /* Adjust right spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: rgba(255, 255, 255, 0.15);
     padding: 20px;
-    border-radius: 10px;
+    
     backdrop-filter: blur(10px);
     text-align: center;
     max-width: 400px;
     width: 100%;
     color: white;
+    margin-top: -1.8rem; /* Pushes the form down */
 }
 
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    font-family: 'Red Hat Display', sans-serif; /* Ensuring label uses the font */
 }
 
 input {
+    font-family: 'Red Hat Display', sans-serif; /* Fixed inconsistency */
+    display: block;
+    margin: 0 auto;
+    text-align: center;
     width: 100%;
     padding: 10px;
     border: none;
     border-radius: 5px;
     margin-bottom: 10px;
     outline: none;
+    width: 20rem;
 }
 
 button {
+    font-family: 'Red Hat Display', sans-serif; /* Fixed inconsistency */
     background-color: rgba(5, 78, 161, 1);
     color: white;
     border: none;

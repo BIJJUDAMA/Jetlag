@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="../CSS/confirmation.css">
+</head>
+<body>
+    <div class="preloader"><center><h1>PAYMENT CONFIRMED</h1></center></div>
+    <div class="confirmation-container">
+        <h2>Booking Confirmed! </h2>
+        <p>Your flight details are as follows:</p>
+
+        <div class="flight-details">
+            <p><strong>✈️ Airline:</strong> <span id="airline"></span></p>
+            <p><strong>⏰ Departure:</strong> <span id="departure"></span></p>
+            <p><strong>🛬 Arrival:</strong> <span id="arrival"></span></p>
+            <p><strong>💰 Price:</strong> <span id="price"></span></p>
+        </div>
+
+        <div class="search-details">
+            <p><strong>🌍 From:</strong> <span id="from"></span></p>
+            <p><strong>📍 To:</strong> <span id="to"></span></p>
+            <p><strong>📅 Date:</strong> <span id="date"></span></p>
+            <p><strong>🎟️ Class:</strong> <span id="class"></span></p>
+            <p><strong>👥 Passengers:</strong> <span id="passengers"></span></p>
+        </div>
+
+
+        <button onclick="goHome()">Return to Homepage</button>
+    </div>
+
+    <script src="../js/confirmation.js"></script>
+</body>
+</html>
