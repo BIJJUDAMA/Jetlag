@@ -63,7 +63,6 @@ JetLag/
 │   ├──confirmation.html
 │   ├──contackus.html
 │   ├──flightbooking.html
-│   ├──flightstatus.html
 │   ├──managebookings.html
 │   ├──payment.html
 │   ├──searchresult.html
