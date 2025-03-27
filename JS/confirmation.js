@@ -25,9 +25,10 @@ function retrieveConfirmationDetails() {
     } else {
         document.querySelector(".search-details").innerHTML = "<p>No search details found.</p>";
     }
+}
+
 
 function goHome() {
     localStorage.clear();
     window.location.href = "../index.html";
-}
 }
