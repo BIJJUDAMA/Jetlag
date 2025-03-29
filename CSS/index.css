@@ -50,8 +50,8 @@ body {
 }
 
 header {
-    background-color: rgba(5,78,161,255);
-    color: rgba(207,244,254,255);
+    background-color: rgba(5,78,161);
+    color: rgba(207,244,254);
     padding: 6px;
     font-size: 2rem;
 }

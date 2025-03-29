@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-    background-image: url('../Images/world-monuments.gif'); /* Ensure correct path */
+    background-image: url('../Images/world-monuments.gif'); 
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

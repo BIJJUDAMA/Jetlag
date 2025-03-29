@@ -17,21 +17,21 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: 'Red Hat Display', sans-serif; /* Ensure body uses correct font */
+    font-family: 'Red Hat Display', sans-serif; 
 }
 
 .main--container {
-    font-family: 'Red Hat Display', sans-serif; /* Fixed inconsistency */
+    font-family: 'Red Hat Display', sans-serif; 
     display: flex;
-    flex-direction: row; /* Changed from column to row */
+    flex-direction: row; 
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 1rem; /* Pushes the entire content down */
+    margin-top: 1rem; 
 }
 
 .card--container {
-    margin-right: 3rem; /* Moves card to the left */
+    margin-right: 3rem; 
     margin-left: 5rem;
     background-image: url('../Images/card-design.jpg');
     background-size: cover;
@@ -40,7 +40,7 @@ body {
     width: 350px;
     height: 12rem;
     transform: scale(1.05);
-    transition: transform 0.3s ease-in-out; /* 🟢 Smooth transition applied */
+    transition: transform 0.3s ease-in-out; 
 }
 
 .card--container:hover {
@@ -75,7 +75,7 @@ body {
 
 .top_chip img, 
 .top_logo img {
-    width: 4rem; /* Adjust size as needed */
+    width: 4rem; 
     height: auto;
     max-width: 100%;
 }
@@ -91,9 +91,9 @@ body {
 }
 
 .form-container {
-    font-family: 'Red Hat Display', sans-serif; /* Fixed inconsistency */
-    margin-left: 3rem; /* Moves form to the right */
-    margin-right: 5rem; /* Adjust right spacing */
+    font-family: 'Red Hat Display', sans-serif; 
+    margin-left: 3rem; 
+    margin-right: 5rem; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,18 +105,18 @@ body {
     max-width: 400px;
     width: 100%;
     color: white;
-    margin-top: -1.8rem; /* Pushes the form down */
+    margin-top: -1.8rem; 
 }
 
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    font-family: 'Red Hat Display', sans-serif; /* Ensuring label uses the font */
+    font-family: 'Red Hat Display', sans-serif; 
 }
 
 input {
-    font-family: 'Red Hat Display', sans-serif; /* Fixed inconsistency */
+    font-family: 'Red Hat Display', sans-serif; 
     display: block;
     margin: 0 auto;
     text-align: center;
@@ -130,7 +130,7 @@ input {
 }
 
 button {
-    font-family: 'Red Hat Display', sans-serif; /* Fixed inconsistency */
+    font-family: 'Red Hat Display', sans-serif;
     background-color: rgba(5, 78, 161, 1);
     color: white;
     border: none;

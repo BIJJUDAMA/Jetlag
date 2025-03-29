@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Function to get query parameters from URL
+
     function getQueryParams() {
         const params = new URLSearchParams(window.location.search);
         return {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("arrival").textContent = flightDetails.arrival;
         document.getElementById("price").textContent = `$${flightDetails.price}`;
 
-        // ✅ Save flight details to `localStorage`
+       
         localStorage.setItem("flightDetails", JSON.stringify(flightDetails));
     } else {
         document.getElementById("flight-summary").innerHTML = "<p>No flight selected.</p>";
@@ -38,13 +38,13 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        window.location.href = "confirmation.html"; // Redirect to confirmation page
+        window.location.href = "confirmation.html"; 
     });
 
     // Live update of card details
     document.getElementById("card-number").addEventListener("input", function () {
-        let inputValue = this.value.replace(/\D/g, ""); // Remove non-digit characters
-        let formattedValue = inputValue.replace(/(\d{4})/g, "$1 ").trim(); // Add spaces every 4 digits
+        let inputValue = this.value.replace(/\D/g, ""); 
+        let formattedValue = inputValue.replace(/(\d{4})/g, "$1 ").trim(); 
         this.value = formattedValue;
 
         document.querySelector(".cardNumber").textContent = formattedValue || "**** **** **** ****";
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("expiry-date").addEventListener("input", function () {
-        let value = this.value.replace(/\D/g, ""); // Remove non-digit characters
+        let value = this.value.replace(/\D/g, "");
         if (value.length > 2) {
             value = value.slice(0, 2) + "/" + value.slice(2, 4); // Format MM/YY
         }
