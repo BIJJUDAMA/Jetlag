@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "confirmation.html"; 
     });
 
-    // Live update of card details
+    
     document.getElementById("card-number").addEventListener("input", function () {
         let inputValue = this.value.replace(/\D/g, ""); 
         let formattedValue = inputValue.replace(/(\d{4})/g, "$1 ").trim(); 
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("expiry-date").addEventListener("input", function () {
         let value = this.value.replace(/\D/g, "");
         if (value.length > 2) {
-            value = value.slice(0, 2) + "/" + value.slice(2, 4); // Format MM/YY
+            value = value.slice(0, 2) + "/" + value.slice(2, 4); 
         }
         this.value = value;
 

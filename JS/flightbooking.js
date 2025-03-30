@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("bookingForm");
 
     form.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent page refresh
+        event.preventDefault(); 
 
         const flightData = {
             from: document.getElementById("from").value,
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             passengers: document.getElementById("passengers").value,
         };
 
-        // Send data to Electron's main process
+       
         window.electronAPI.saveFlightDetails(flightData);
         alert("Flight details saved!");
     });
