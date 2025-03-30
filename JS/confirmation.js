@@ -26,7 +26,7 @@ function retrieveConfirmationDetails() {
         document.querySelector(".search-details").innerHTML = "<p>No search details found.</p>";
     }
 
-    // Generate and display a random 8-digit confirmation number
+    
     let confirmationNumber = localStorage.getItem("confirmationNumber");
 
     if (!confirmationNumber) {
