@@ -3,9 +3,884 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SkyJourney - Flight Status Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/gif" href="../Images/airplane-small.png">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #0d47a1;
+            --accent: #ff6d00;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --delay: #ffc107;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .airplane {
+            position: absolute;
+            font-size: 3rem;
+            animation: flyAcross 15s linear infinite;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .cloud {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: float 20s linear infinite;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .search-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .search-section h2 {
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .search-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .search-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .search-tab:hover:not(.active) {
+            color: var(--dark);
+            border-bottom-color: #aaa;
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+            outline: none;
+        }
+        
+        .search-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            align-self: flex-end;
+        }
+        
+        .search-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .search-btn:active {
+            transform: translateY(0);
+        }
+        
+        .flight-status-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: fadeIn 1s ease;
+        }
+        
+        .flight-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .flight-header h2 {
+            font-size: 1.5rem;
+        }
+        
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .status-on-time {
+            background: var(--success);
+        }
+        
+        .status-delayed {
+            background: var(--delay);
+            color: var(--dark);
+        }
+        
+        .status-cancelled {
+            background: var(--danger);
+        }
+        
+        .status-departed {
+            background: var(--warning);
+            color: var(--dark);
+        }
+        
+        .flight-details {
+            padding: 2rem;
+        }
+        
+        .route-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .airport {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .airport-code {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .airport-name {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .flight-time {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+        
+        .flight-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .route-line {
+            flex: 2;
+            height: 4px;
+            background: #ddd;
+            position: relative;
+            margin: 0 1rem;
+        }
+        
+        .route-line::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: -4px;
+            left: 0;
+        }
+        
+        .route-line::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: -4px;
+            right: 0;
+        }
+        
+        .plane-progress {
+            position: absolute;
+            left: 0;
+            top: -8px;
+            font-size: 1.5rem;
+            color: var(--accent);
+            transform: translateX(-50%);
+            transition: left 2s ease-in-out;
+            z-index: 2;
+        }
+        
+        .flight-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .info-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .info-card h3 {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card h3 i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .info-card p {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .map-container {
+            height: 300px;
+            background: #eee;
+            border-radius: 8px;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+            font-size: 1.2rem;
+        }
+        
+        .flight-history {
+            margin-top: 2rem;
+        }
+        
+        .history-item {
+            display: flex;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        
+        .history-time {
+            font-weight: 600;
+            min-width: 80px;
+            color: #555;
+        }
+        
+        .history-event {
+            flex: 1;
+            padding-left: 1rem;
+        }
+        
+        .history-status {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .history-location {
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+        
+        .terminal-gate {
+            display: flex;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .terminal-gate span {
+            margin-right: 1rem;
+            color: #555;
+        }
+        
+        .history-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e3f2fd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            color: var(--primary);
+        }
+        
+        .delay-notice {
+            background: #fff8e1;
+            border-left: 4px solid var(--delay);
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            animation: pulse 2s infinite;
+        }
+        
+        .delay-notice i {
+            color: var(--delay);
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .delay-notice p {
+            flex: 1;
+        }
+        
+        .delay-notice strong {
+            color: var(--dark);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        @keyframes flyAcross {
+            0% {
+                left: -50px;
+                top: 20%;
+                transform: rotate(0deg);
+            }
+            50% {
+                top: 25%;
+                transform: rotate(5deg);
+            }
+            100% {
+                left: calc(100% + 50px);
+                top: 20%;
+                transform: rotate(0deg);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .route-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .airport {
+                text-align: left;
+                margin-bottom: 1.5rem;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .route-line {
+                width: 4px;
+                height: 60px;
+                margin: 0.5rem 0 0.5rem 30px;
+            }
+            
+            .route-line::before,
+            .route-line::after {
+                left: -4px;
+                top: 0;
+            }
+            
+            .route-line::after {
+                top: auto;
+                bottom: 0;
+            }
+            
+            .plane-progress {
+                left: 30px;
+                top: auto;
+                transform: translateY(-50%);
+                transition: top 2s ease-in-out;
+            }
+            
+            .flight-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header class="header">
+        <!-- Animated airplane -->
+        <div class="airplane">
+            <i class="fas fa-plane"></i>
+        </div>
+        
+        <!-- Animated clouds -->
+        <div class="cloud" style="top: 15%; left: 10%;">
+            <i class="fas fa-cloud"></i>
+        </div>
+        <div class="cloud" style="top: 25%; left: 60%;">
+            <i class="fas fa-cloud"></i>
+        </div>
+        <div class="cloud" style="top: 10%; left: 80%;">
+            <i class="fas fa-cloud"></i>
+        </div>
+        
+        <h1>Flight Status Tracker</h1>
+        <p>Get real-time updates on your flight's status, departure/arrival times, and more</p>
+    </header>
     
+    <div class="container">
+        <div class="search-section">
+            <h2>Track Your Flight</h2>
+            
+            <div class="search-tabs">
+                <div class="search-tab active">By Flight Number</div>
+                <div class="search-tab">By Route</div>
+                <div class="search-tab">By Departure City</div>
+                <div class="search-tab">By Arrival City</div>
+            </div>
+            
+            <form class="search-form">
+                <div class="form-group">
+                    <label for="flightNumber">Flight Number</label>
+                    <input type="text" id="flightNumber" placeholder="e.g. SKJ123" value="SKJ456">
+                </div>
+                
+                <div class="form-group">
+                    <label for="flightDate">Flight Date</label>
+                    <input type="date" id="flightDate" value="2023-12-15">
+                </div>
+                
+                <button type="button" class="search-btn" id="trackFlight">
+                    <i class="fas fa-search"></i> Track Flight
+                </button>
+            </form>
+        </div>
+        
+        <div class="flight-status-container" id="flightStatus">
+            <div class="flight-header">
+                <h2>Flight SKJ456 • Boeing 787-9 Dreamliner</h2>
+                <div class="status-badge status-delayed">Delayed</div>
+            </div>
+            
+            <div class="flight-details">
+                <div class="delay-notice">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p><strong>Flight Update:</strong> This flight is currently delayed by 1 hour 25 minutes due to late arriving aircraft. Expected departure is now 14:25.</p>
+                </div>
+                
+                <div class="route-container">
+                    <div class="airport">
+                        <div class="airport-code">JFK</div>
+                        <div class="airport-name">John F. Kennedy International</div>
+                        <div class="flight-time">13:00</div>
+                        <div class="flight-date">Wed, Dec 15, 2023</div>
+                    </div>
+                    
+                    <div class="route-line">
+                        <div class="plane-progress" id="planeProgress">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="airport">
+                        <div class="airport-code">LAX</div>
+                        <div class="airport-name">Los Angeles International</div>
+                        <div class="flight-time">16:30</div>
+                        <div class="flight-date">Wed, Dec 15, 2023</div>
+                    </div>
+                </div>
+                
+                <div class="flight-info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-clock"></i> Duration</h3>
+                        <p>6h 30m</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-chair"></i> Cabin Class</h3>
+                        <p>Economy</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-door-open"></i> Gate</h3>
+                        <p>B15</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-suitcase"></i> Baggage Claim</h3>
+                        <p>4</p>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <div>
+                            <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <p>Flight Path Map</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flight-history">
+                    <h3 style="margin-bottom: 1rem;">Flight History</h3>
+                    
+                    <div class="history-item">
+                        <div class="history-icon">
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <div class="history-details">
+                            <div class="history-time">11:35 AM</div>
+                            <div class="history-event">
+                                <div class="history-status">Flight delayed</div>
+                                <div class="history-location">New departure time: 14:25</div>
+                                <div class="terminal-gate">
+                                    <span>Terminal: 4</span>
+                                    <span>Gate: B15</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="history-item">
+                        <div class="history-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="history-details">
+                            <div class="history-time">10:15 AM</div>
+                            <div class="history-event">
+                                <div class="history-status">Aircraft arrived</div>
+                                <div class="history-location">From London (LHR)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="history-item">
+                        <div class="history-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="history-details">
+                            <div class="history-time">09:30 AM</div>
+                            <div class="history-event">
+                                <div class="history-status">Check-in opened</div>
+                                <div class="terminal-gate">
+                                    <span>Counters: 12-18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="history-item">
+                        <div class="history-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="history-details">
+                            <div class="history-time">Yesterday</div>
+                            <div class="history-event">
+                                <div class="history-status">Flight scheduled</div>
+                                <div class="history-location">On-time departure</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 SkyJourney Airlines. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize the page with animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate plane progress on route line
+            const planeProgress = document.getElementById('planeProgress');
+            setTimeout(() => {
+                if (window.innerWidth > 768) {
+                    planeProgress.style.left = '75%'; // Simulate flight 75% complete
+                } else {
+                    planeProgress.style.top = '75%';
+                }
+            }, 500);
+            
+            // Tab switching functionality
+            const tabs = document.querySelectorAll('.search-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Here you would update the search form based on selected tab
+                    // For demo purposes, we're just showing the same flight status
+                });
+            });
+            
+            // Track flight button
+            document.getElementById('trackFlight').addEventListener('click', function() {
+                // Simulate loading
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Tracking...';
+                
+                // After delay, show results
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-search"></i> Track Flight';
+                    document.getElementById('flightStatus').style.display = 'block';
+                    
+                    // Scroll to results
+                    document.getElementById('flightStatus').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }, 1500);
+            });
+            
+            // Create additional flying elements for more animation
+            createFlyingElements();
+        });
+        
+        function createFlyingElements() {
+            const header = document.querySelector('.header');
+            
+            // Create more airplanes
+            for (let i = 0; i < 2; i++) {
+                const airplane = document.createElement('div');
+                airplane.className = 'airplane';
+                airplane.innerHTML = '<i class="fas fa-plane"></i>';
+                airplane.style.top = `${15 + Math.random() * 20}%`;
+                airplane.style.animationDuration = `${20 + Math.random() * 20}s`;
+                airplane.style.animationDelay = `${Math.random() * 10}s`;
+                header.appendChild(airplane);
+            }
+            
+            // Create more clouds
+            for (let i = 0; i < 5; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.innerHTML = '<i class="fas fa-cloud"></i>';
+                cloud.style.top = `${5 + Math.random() * 30}%`;
+                cloud.style.left = `${Math.random() * 90}%`;
+                cloud.style.fontSize = `${1 + Math.random() * 2}rem`;
+                cloud.style.animationDuration = `${15 + Math.random() * 30}s`;
+                cloud.style.animationDelay = `${Math.random() * 10}s`;
+                header.appendChild(cloud);
+            }
+        }
+        
+        // Simulate real-time updates
+        setInterval(() => {
+            // In a real app, this would fetch actual flight data
+            const statusBadge = document.querySelector('.status-badge');
+            const statuses = ['status-on-time', 'status-delayed', 'status-departed'];
+            const currentStatus = statusBadge.className.split(' ')[1];
+            let newStatus = statuses[Math.floor(Math.random() * statuses.length)];
+            
+            // Make sure we don't "update" to the same status
+            while (newStatus === currentStatus) {
+                newStatus = statuses[Math.floor(Math.random() * statuses.length)];
+            }
+            
+            // Only simulate updates occasionally (20% chance)
+            if (Math.random() > 0.8) {
+                statusBadge.classList.remove(currentStatus);
+                statusBadge.classList.add(newStatus);
+                
+                // Update status text
+                if (newStatus === 'status-on-time') {
+                    statusBadge.textContent = 'On Time';
+                } else if (newStatus === 'status-delayed') {
+                    statusBadge.textContent = 'Delayed';
+                } else {
+                    statusBadge.textContent = 'Departed';
+                }
+                
+                // Add a history item
+                const history = document.querySelector('.flight-history');
+                const newItem = document.createElement('div');
+                newItem.className = 'history-item';
+                newItem.innerHTML = `
+                    <div class="history-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="history-details">
+                        <div class="history-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+                        <div class="history-event">
+                            <div class="history-status">Status updated</div>
+                            <div class="history-location">Now: ${statusBadge.textContent}</div>
+                        </div>
+                    </div>
+                `;
+                
+                history.insertBefore(newItem, history.firstChild);
+            }
+        }, 10000); // Check every 10 seconds
+    </script>
 </body>
 </html>
