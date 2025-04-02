@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyJourney - Customer Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #0d47a1;
+            --accent: #ff6d00;
+            --light: #f5f5f5;
+            --dark: #212121;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .airplane {
+            position: absolute;
+            font-size: 3rem;
+            animation: flyAcross 15s linear infinite;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .cloud {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: float 20s linear infinite;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .support-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .support-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .support-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .support-card:hover i {
+            transform: scale(1.2);
+            color: var(--accent);
+        }
+        
+        .support-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .support-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .support-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .support-card:hover::after {
+            transform: scaleX(1);
+            background: var(--accent);
+        }
+        
+        .faq-section {
+            margin-top: 4rem;
+            animation: fadeIn 1s ease;
+        }
+        
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f0f7ff;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+            background: #f9f9f9;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .contact-form {
+            margin-top: 4rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .contact-form h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+            outline: none;
+        }
+        
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        
+        .submit-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .status-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .status-message.success {
+            background: #e6ffed;
+            color: #22863a;
+            display: block;
+        }
+        
+        .status-message.error {
+            background: #ffebee;
+            color: #b71c1c;
+            display: block;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        @keyframes flyAcross {
+            0% {
+                left: -50px;
+                top: 20%;
+                transform: rotate(0deg);
+            }
+            50% {
+                top: 25%;
+                transform: rotate(5deg);
+            }
+            100% {
+                left: calc(100% + 50px);
+                top: 20%;
+                transform: rotate(0deg);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <!-- Animated airplane -->
+        <div class="airplane">
+            <i class="fas fa-plane"></i>
+        </div>
+        
+        <!-- Animated clouds -->
+        <div class="cloud" style="top: 15%; left: 10%;">
+            <i class="fas fa-cloud"></i>
+        </div>
+        <div class="cloud" style="top: 25%; left: 60%;">
+            <i class="fas fa-cloud"></i>
+        </div>
+        <div class="cloud" style="top: 10%; left: 80%;">
+            <i class="fas fa-cloud"></i>
+        </div>
+        
+        <h1>SkyJourney Support Center</h1>
+        <p>We're here to help you with all your flight booking needs. Find answers to common questions or contact our support team directly.</p>
+    </header>
+    
+    <div class="container">
+        <div class="support-grid">
+            <div class="support-card">
+                <i class="fas fa-ticket-alt"></i>
+                <h3>Booking Assistance</h3>
+                <p>Need help with your flight booking? Our team can guide you through the process and answer any questions.</p>
+            </div>
+            
+            <div class="support-card">
+                <i class="fas fa-exchange-alt"></i>
+                <h3>Changes & Cancellations</h3>
+                <p>Learn how to modify or cancel your booking and understand our policies regarding refunds and changes.</p>
+            </div>
+            
+            <div class="support-card">
+                <i class="fas fa-suitcase"></i>
+                <h3>Baggage Information</h3>
+                <p>Everything you need to know about baggage allowances, restrictions, and fees for your upcoming flight.</p>
+            </div>
+            
+            <div class="support-card">
+                <i class="fas fa-passport"></i>
+                <h3>Travel Documents</h3>
+                <p>Information about required travel documents, visas, and other important paperwork for your journey.</p>
+            </div>
+            
+            <div class="support-card">
+                <i class="fas fa-wheelchair"></i>
+                <h3>Special Assistance</h3>
+                <p>Request special services for passengers with disabilities, medical conditions, or other special needs.</p>
+            </div>
+            
+            <div class="support-card">
+                <i class="fas fa-headset"></i>
+                <h3>24/7 Customer Support</h3>
+                <p>Our customer service team is available around the clock to assist with any issues or emergencies.</p>
+            </div>
+        </div>
+        
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I change or cancel my flight?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can change or cancel your flight by logging into your SkyJourney account and accessing your bookings. Alternatively, you can contact our customer support team for assistance. Please note that change and cancellation fees may apply depending on your fare type and how close you are to your departure date.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is the baggage allowance for my flight?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Baggage allowances vary depending on your fare class, destination, and frequent flyer status. Generally, economy class passengers are allowed one carry-on bag (max 7kg) and one personal item. Checked baggage allowances typically range from 20kg to 32kg. You can find specific details for your flight in your booking confirmation or by visiting our baggage policy page.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I select my seat?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can select your seat during the booking process or after booking by managing your reservation online. Some seats may require an additional fee, while others are available for free selection depending on your fare class. Seat selection typically opens 24-48 hours before departure if you haven't selected one earlier.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What happens if my flight is delayed or canceled?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>In case of delays or cancellations, we will notify you via email or SMS using the contact information provided during booking. Depending on the circumstances, we may offer alternative flights, refunds, or compensation as per our terms and conditions and applicable regulations. You can check your flight status in real-time on our website or mobile app.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I request special assistance?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can request special assistance (wheelchair service, medical needs, etc.) during the booking process or by contacting our customer support team at least 48 hours before your flight. We recommend arriving at the airport earlier than usual to allow sufficient time for assistance procedures.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <h2>Contact Our Support Team</h2>
+            <form id="supportForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bookingRef">Booking Reference (if applicable)</label>
+                    <input type="text" id="bookingRef" name="bookingRef">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a topic</option>
+                        <option value="booking">Booking Assistance</option>
+                        <option value="changes">Changes & Cancellations</option>
+                        <option value="baggage">Baggage Questions</option>
+                        <option value="documents">Travel Documents</option>
+                        <option value="special">Special Assistance</option>
+                        <option value="other">Other Inquiry</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+                
+                <div id="statusMessage" class="status-message"></div>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 SkyJourney Airlines. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+    
+    <script>
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                
+                // Close other open items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Form submission handling
+        document.getElementById('supportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = "Your message has been sent successfully! We'll get back to you within 24 hours.";
+            statusMessage.className = "status-message success";
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                this.reset();
+                statusMessage.className = "status-message";
+                statusMessage.textContent = "";
+            }, 5000);
+        });
+        
+        // Create additional flying elements for more animation
+        function createFlyingElements() {
+            const header = document.querySelector('.header');
+            
+            // Create more airplanes
+            for (let i = 0; i < 2; i++) {
+                const airplane = document.createElement('div');
+                airplane.className = 'airplane';
+                airplane.innerHTML = '<i class="fas fa-plane"></i>';
+                airplane.style.top = `${15 + Math.random() * 20}%`;
+                airplane.style.animationDuration = `${20 + Math.random() * 20}s`;
+                airplane.style.animationDelay = `${Math.random() * 10}s`;
+                header.appendChild(airplane);
+            }
+            
+            // Create more clouds
+            for (let i = 0; i < 5; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.innerHTML = '<i class="fas fa-cloud"></i>';
+                cloud.style.top = `${5 + Math.random() * 30}%`;
+                cloud.style.left = `${Math.random() * 90}%`;
+                cloud.style.fontSize = `${1 + Math.random() * 2}rem`;
+                cloud.style.animationDuration = `${15 + Math.random() * 30}s`;
+                cloud.style.animationDelay = `${Math.random() * 10}s`;
+                header.appendChild(cloud);
+            }
+        }
+        
+        // Initialize flying elements
+        window.addEventListener('load', createFlyingElements);
+    </script>
+</body>
+</html>
