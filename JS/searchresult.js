@@ -11,7 +11,7 @@ function getQueryParams() {
         passengers: params.get('passengers')
     };
 
-    // ✅ Save search details to localStorage
+  
     localStorage.setItem("searchDetails", JSON.stringify(searchDetails));
 
     document.getElementById('from').textContent = searchDetails.from;
@@ -52,7 +52,7 @@ function generateRandomFlights() {
             amenities: selectedAmenities
         };
 
-        flights.push(flightData); // ✅ Store the flight in the array
+        flights.push(flightData);
 
         const flightCard = document.createElement("div");
         flightCard.classList.add("flight-card");
@@ -74,7 +74,7 @@ function generateRandomFlights() {
         flightContainer.appendChild(flightCard);
     }
 
-    // ✅ Save flights array to localStorage
+
     localStorage.setItem("availableFlights", JSON.stringify(flights));
 }
 
@@ -93,7 +93,7 @@ function bookFlight(airline, departure, arrival, price) {
         passengers: flightDetails.passengers
     };
     
-    // ✅ Save all details to localStorage
+    
     localStorage.setItem("selectedFlight", JSON.stringify(selectedFlight));
 
     const url = `payment.html?airline=${encodeURIComponent(airline)}&departure=${encodeURIComponent(departure)}&arrival=${encodeURIComponent(arrival)}&price=${encodeURIComponent(price)}`;

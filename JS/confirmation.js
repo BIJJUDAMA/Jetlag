@@ -25,8 +25,17 @@ function retrieveConfirmationDetails() {
     } else {
         document.querySelector(".search-details").innerHTML = "<p>No search details found.</p>";
     }
-}
 
+    
+    let confirmationNumber = localStorage.getItem("confirmationNumber");
+
+    if (!confirmationNumber) {
+        confirmationNumber = Math.floor(10000000 + Math.random() * 90000000);
+        localStorage.setItem("confirmationNumber", confirmationNumber);
+    }
+
+    document.getElementById("confirmation-number").textContent = confirmationNumber;
+}
 
 function goHome() {
     localStorage.clear();

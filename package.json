@@ -1,0 +1,22 @@
+{
+  "name": "jetlag",
+  "version": "1.0.0",
+  "description": "JetLag is a sleek and user-friendly flight booking website designed to provide a seamless browsing experience for travelers. This project focuses on the frontend, offering an intuitive UI for searching and selecting flights.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BIJJUDAMA/Jetlag.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/BIJJUDAMA/Jetlag/issues"
+  },
+  "homepage": "https://github.com/BIJJUDAMA/Jetlag#readme"
+}

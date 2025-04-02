@@ -4,7 +4,8 @@ JetLag is a sleek and user-friendly flight booking website designed to provide a
 
 ## 📝 Introduction
 
-Creating a flight booking website using **HTML, CSS, and JavaScript** involves crafting a platform that is both functional and visually appealing. JetLag aims to provide a **user-centric** flight booking experience with a focus on **design, functionality, and usability**.
+A flight booking website using **HTML, CSS, and JavaScript** involves crafting a platform that is both functional and visually appealing. 
+It's deployed on Electron as a web application
 
 ---
 
@@ -49,11 +50,21 @@ Creating a flight booking website using **HTML, CSS, and JavaScript** involves c
 
 ---
 
+## 💻 Getting Started 
+1️⃣ **Run the Game**
+   - Open a terminal and navigate to the project folder.
+   - Run the following command in the terminal
+     ```sh
+     npx electron .
+     
+---  
+
 ## 📂 Project Structure
 ```sh
 JetLag/
 ├── CSS/
-│   ├──confirmation.css
+│   ├──bridge.js
+|   ├──confirmation.css
 │   ├──flightbooking.css
 │   ├──index.css
 │   ├──payment.css
@@ -74,6 +85,7 @@ JetLag/
 │  
 ├── LICENSE
 ├── README.md
+├── main.js
 └── index.html
 ```
-**Contributors**- [BIJJUDAMA](https://github.com/BIJJUDAMA) and [ANDROIDREV-9](https://github.com/ANDROIDREV-9)
+
