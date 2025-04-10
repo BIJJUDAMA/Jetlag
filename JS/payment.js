@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (inputValue.startsWith("4")) {
                 cardBrand = "Visa";
                 iconClass = "fab fa-cc-visa";
-                cardBrandLogo.src = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg";
+                cardBrandLogo.src = "../Images/visa.png";
             } else if (/^5[1-5]/.test(inputValue)) {
                 cardBrand = "MasterCard";
                 iconClass = "fab fa-cc-mastercard";
