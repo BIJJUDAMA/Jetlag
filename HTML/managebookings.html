@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyJourney - Manage Bookings</title>
+    <title>Jetlag - Manage Bookings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/gif" href="../Images/airplane-small.png">
     <style>
@@ -604,27 +604,27 @@
             </div>
             
             <div class="nav-menu">
-                <div class="nav-item">
+                <div class="nav-item" id="dashboard-nav">
                     <i class="fas fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </div>
-                <div class="nav-item active">
+                <div class="nav-item active" id="bookings-nav">
                     <i class="fas fa-ticket-alt"></i>
                     <span>Bookings</span>
                 </div>
-                <div class="nav-item">
+                <div class="nav-item" id="flights-nav">
                     <i class="fas fa-plane"></i>
                     <span>Flights</span>
                 </div>
-                <div class="nav-item">
+                <div class="nav-item" id="customers-nav">
                     <i class="fas fa-users"></i>
                     <span>Customers</span>
                 </div>
-                <div class="nav-item">
+                <div class="nav-item" id="reports-nav">
                     <i class="fas fa-chart-line"></i>
                     <span>Reports</span>
                 </div>
-                <div class="nav-item">
+                <div class="nav-item" id="settings-nav">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </div>
@@ -723,9 +723,9 @@
                                 <td>Dec 15, 2023</td>
                                 <td><span class="status-badge status-confirmed">Confirmed</span></td>
                                 <td>
-                                    <button class="action-btn" title="View" onclick="openModal('view')">
+                                    <a href="bookingdetails.html?id=SKJ-789456" class="action-btn" title="View">
                                         <i class="fas fa-eye"></i>
-                                    </button>
+                                    </a>
                                     <button class="action-btn" title="Edit" onclick="openModal('edit')">
                                         <i class="fas fa-edit"></i>
                                     </button>
@@ -747,9 +747,9 @@
                                 <td>Dec 18, 2023</td>
                                 <td><span class="status-badge status-pending">Pending</span></td>
                                 <td>
-                                    <button class="action-btn" title="View" onclick="openModal('view')">
+                                    <a href="bookingdetails.html?id=SKJ-123789" class="action-btn" title="View">
                                         <i class="fas fa-eye"></i>
-                                    </button>
+                                    </a>
                                     <button class="action-btn" title="Edit" onclick="openModal('edit')">
                                         <i class="fas fa-edit"></i>
                                     </button>
@@ -771,9 +771,9 @@
                                 <td>Dec 20, 2023</td>
                                 <td><span class="status-badge status-confirmed">Confirmed</span></td>
                                 <td>
-                                    <button class="action-btn" title="View" onclick="openModal('view')">
+                                    <a href="bookingdetails.html?id=SKJ-456123" class="action-btn" title="View">
                                         <i class="fas fa-eye"></i>
-                                    </button>
+                                    </a>
                                     <button class="action-btn" title="Edit" onclick="openModal('edit')">
                                         <i class="fas fa-edit"></i>
                                     </button>
@@ -795,9 +795,9 @@
                                 <td>Dec 22, 2023</td>
                                 <td><span class="status-badge status-cancelled">Cancelled</span></td>
                                 <td>
-                                    <button class="action-btn" title="View" onclick="openModal('view')">
+                                    <a href="bookingdetails.html?id=SKJ-987321" class="action-btn" title="View">
                                         <i class="fas fa-eye"></i>
-                                    </button>
+                                    </a>
                                     <button class="action-btn" title="Restore">
                                         <i class="fas fa-undo"></i>
                                     </button>
@@ -816,9 +816,9 @@
                                 <td>Dec 24, 2023</td>
                                 <td><span class="status-badge status-confirmed">Confirmed</span></td>
                                 <td>
-                                    <button class="action-btn" title="View" onclick="openModal('view')">
+                                    <a href="bookingdetails.html?id=SKJ-654987" class="action-btn" title="View">
                                         <i class="fas fa-eye"></i>
-                                    </button>
+                                    </a>
                                     <button class="action-btn" title="Edit" onclick="openModal('edit')">
                                         <i class="fas fa-edit"></i>
                                     </button>
@@ -986,17 +986,6 @@
     </div>
     
     <script>
-        // Modal functions
-        function openModal(modalType) {
-            document.getElementById(modalType + 'Modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeModal(modalType) {
-            document.getElementById(modalType + 'Modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target.className === 'modal active') {
@@ -1006,14 +995,9 @@
                 document.body.style.overflow = 'auto';
             }
         }
-        
-        // Simulate loading animation for stats cards
-        document.addEventListener('DOMContentLoaded', function() {
-            const statCards = document.querySelectorAll('.stat-card');
-            statCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
     </script>
+    
+    <!-- Load the managebookings.js file -->
+    <script src="../JS/managebookings.js"></script>
 </body>
 </html>

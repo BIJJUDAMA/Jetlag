@@ -1,31 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
-body {
-    font-family: 'Red Hat Display', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    text-align: center;
-}
+/* Index page specific styles - works with common.css */
+
+/* Preloader */
 .preloader {
     background-image: url('../Images/plane-flying2.gif');
-    background-size: 100% 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     position: fixed;
     width: 100%;
     height: 100vh;
-    font-family: 'Red Hat Display', sans-serif;
     z-index: 9999;
     animation: holdThenFade 2.5s ease-in-out forwards;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .preloader h1 {
-    font-size: 6rem;
+    font-size: clamp(3rem, 8vw, 6rem);
     margin: 0;
-    color: #b0c4de;
+    color: var(--primary-light);
     overflow: hidden;
     white-space: nowrap;
     display: inline-block; 
@@ -34,14 +28,9 @@ body {
 }
 
 @keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
+    from { width: 0; }
+    to { width: 100%; }
 }
-
 
 @keyframes holdThenFade {
     0% { opacity: 1; }  
@@ -49,87 +38,171 @@ body {
     100% { opacity: 0; visibility: hidden; } 
 }
 
-header {
-    background-color: rgba(5,78,161);
-    color: rgba(207,244,254);
-    padding: 6px;
-    font-size: 2rem;
-}
-header h1 {
-    margin: 0px;
-}
-header p {
-    font-size: 1.2rem;
-    margin:0px;
-}
-nav ul {
-    list-style: none;
-    padding: 5px;
-    background-color:  rgba(139,209,242);
-    margin: 0;
-    display: flex; 
-    gap: 15px; 
-    align-items: center;
-    justify-content: center; 
-}
-
-nav ul li {
-    padding: 5px 15px;
-}
-
-nav ul li a {
-    font-family: 'Red Hat Display', sans-serif;
-    color: #000000;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 8px;
-    border-radius: 20px;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    display: inline-block; 
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-
-nav ul li a:hover {
-    color: rgb(250, 250, 246);
-    transform: scale(1.2); 
-    text-decoration-thickness: 3px;
-    text-decoration-color: rgb(250, 250, 246);
-}
-
-.block {
+/* Hero Section */
+.hero-section {
     background-image: url('../Images/plane-flying.gif');
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center;
-    padding: 70px 20px;
-    height: 19.2rem; 
-    overflow-y: hidden; 
-}
-.block-content{
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    color: rgb(0, 0, 0);
-    position: absolute;
-    top: 12.5rem;
-    left:0;
-    right: 0;
-   
-}
-.btn {
-    background-color: rgba(238,117,111,255);
-    color: white;
-    padding: 15px 30px;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background-repeat: no-repeat;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: var(--spacing-xl) 0;
 }
 
-.btn:hover {
-    transform: scale(1.2);
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.hero-content h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: var(--spacing-md);
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-cta {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Features Section */
+.features-section {
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.features-section h2 {
+    margin-bottom: var(--spacing-xl);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.feature-card {
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: var(--transition-normal);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: var(--spacing-md);
+}
+
+.feature-card h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Destinations Section */
+.destinations-section {
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.destinations-section h2 {
+    margin-bottom: var(--spacing-xl);
+}
+
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.destination-card {
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow);
+    transition: var(--transition-normal);
+    background-color: white;
+}
+
+.destination-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px var(--shadow);
+}
+
+.destination-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.destination-content {
+    padding: var(--spacing-md);
+    text-align: center;
+}
+
+.destination-content h3 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.destination-content p {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+.btn-sm {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-cta {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
     
+    .hero-content {
+        padding: var(--spacing-md);
+    }
+    
+    .features-grid,
+    .destinations-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+}
+
+/* Dark Mode Adjustments */
+.dark-theme .destination-card {
+    background-color: var(--dark);
+    color: var(--text-light);
+}
+
+.dark-theme .destination-content p {
+    color: var(--text-light);
+    opacity: 0.8;
 }

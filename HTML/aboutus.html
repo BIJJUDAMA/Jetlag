@@ -3,9 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jetlag - About Us</title>
+    <link rel="icon" type="image/gif" href="../Images/airplane-small.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #0d47a1;
+            --accent: #ff6d00;
+            --light: #f5f5f5;
+            --dark: #212121;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .airplane {
+            position: absolute;
+            font-size: 3rem;
+            animation: flyAcross 15s linear infinite;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .cloud {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: float 20s linear infinite;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .about-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease;
+        }
+        
+        .about-section h2 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .about-section p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .team-section {
+            margin-top: 3rem;
+        }
+        
+        .team-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-photo {
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--primary);
+        }
+        
+        .member-info {
+            padding: 1.5rem;
+        }
+        
+        .member-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .member-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        @keyframes flyAcross {
+            0% {
+                left: -50px;
+                top: 20%;
+                transform: rotate(0deg);
+            }
+            50% {
+                top: 25%;
+                transform: rotate(5deg);
+            }
+            100% {
+                left: calc(100% + 50px);
+                top: 20%;
+                transform: rotate(0deg);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Navigation Styles */
+        nav {
+            background-color: var(--dark);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="flightbooking.html">Book a Flight</a></li>
+            <li><a href="flightstatus.html">Flight Status</a></li>
+            <li><a href="managebookings.html">Manage Booking</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+    </nav>
     
+    <header class="header">
+        <!-- Animated airplane -->
+        <div class="airplane">
+            <i class="fas fa-plane"></i>
+        </div>
+        
+        <!-- Animated clouds -->
+        <div class="cloud" style="top: 15%; left: 10%;">
+            <i class="fas fa-cloud"></i>
+        </div>
+        <div class="cloud" style="top: 25%; left: 60%;">
+            <i class="fas fa-cloud"></i>
+        </div>
+        <div class="cloud" style="top: 10%; left: 80%;">
+            <i class="fas fa-cloud"></i>
+        </div>
+        
+        <h1>About SkyJourney</h1>
+        <p>Learn about our mission, values, and the team behind SkyJourney Airlines.</p>
+    </header>
+    
+    <div class="container">
+        <div class="about-section">
+            <h2>Our Story</h2>
+            <p>Founded in 2010, SkyJourney Airlines began with a simple mission: to make air travel more accessible, comfortable, and enjoyable for everyone. What started as a small regional airline has grown into a global carrier serving hundreds of destinations across six continents.</p>
+            <p>Our journey has been defined by a commitment to innovation, safety, and customer satisfaction. We've continuously invested in modern aircraft, cutting-edge technology, and comprehensive training for our staff to ensure we deliver the highest standards of service.</p>
+        </div>
+        
+        <div class="about-section">
+            <h2>Our Mission</h2>
+            <p>At SkyJourney, our mission is to connect people and cultures by providing safe, reliable, and enjoyable air travel experiences. We strive to make the world more accessible while minimizing our environmental impact and contributing positively to the communities we serve.</p>
+        </div>
+        
+        <div class="about-section">
+            <h2>Our Values</h2>
+            <p><strong>Safety First:</strong> Safety is our top priority in every decision we make.</p>
+            <p><strong>Customer Focus:</strong> We put our customers at the heart of everything we do.</p>
+            <p><strong>Innovation:</strong> We continuously seek new ways to improve our services and operations.</p>
+            <p><strong>Sustainability:</strong> We are committed to reducing our environmental footprint.</p>
+            <p><strong>Diversity & Inclusion:</strong> We celebrate diversity and create an inclusive environment for all.</p>
+        </div>
+        
+        <div class="team-section">
+            <h2>Meet Our Leadership Team</h2>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Sarah Johnson</h3>
+                        <p>Chief Executive Officer</p>
+                        <p>With over 20 years of experience in the aviation industry, Sarah leads our company with vision and passion.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Michael Chen</h3>
+                        <p>Chief Operations Officer</p>
+                        <p>Michael ensures our daily operations run smoothly and efficiently, maintaining our high standards of service.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Elena Rodriguez</h3>
+                        <p>Chief Customer Officer</p>
+                        <p>Elena leads our customer experience initiatives, ensuring every journey with us exceeds expectations.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 SkyJourney Airlines. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
 </body>
 </html>

@@ -3,68 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment</title>
+    <title>Jetlag - Secure Payment</title>
     <link rel="stylesheet" href="../CSS/payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/gif" href="../Images/airplane-small.png">
 </head>
 <body>
+    <div class="payment-header">
+        <h1><i class="fas fa-lock"></i> Secure Checkout</h1>
+        <div class="security-badges">
+            <span><i class="fas fa-shield-alt"></i> 256-bit SSL</span>
+            <span><i class="fas fa-lock"></i> PCI Compliant</span>
+            <span><i class="fas fa-user-shield"></i> Fraud Protection</span>
+        </div>
+    </div>
 
     <div class="main--container">
-        <div class="card--container">
-            <div class="card _front">
-                <div class="front_top">
-                    <div class="top_chip">
-                        <img src="../Images/chip-card.png" alt="credit card chip">
-                    </div>
-                    <div class="top_logo">
-                        <img src="../Images/mastercard.png" alt="credit card logo">
-                    </div>
+        <div class="payment-methods-container">
+            <div class="flight-summary-mobile" id="flight-summary-mobile">
+                <!-- Mobile flight summary - shown on smaller screens -->
+            </div>
+            
+            <h2>Select Payment Method</h2>
+            <div class="payment-methods">
+                <div class="payment-method active" data-method="credit-card">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Credit Card</span>
                 </div>
-                <div class="front_middle">
-                    <div class="cardNumber">**** **** **** ****</div>
+                <div class="payment-method" data-method="paypal">
+                    <i class="fab fa-paypal"></i>
+                    <span>PayPal</span>
                 </div>
-                <div class="front_bottom">
-                    <div class="bottom_name">
-                        <span>Card Holder:</span><br />
-                        <span class="cardName">&nbsp</span>
+                <div class="payment-method" data-method="digital-wallet">
+                    <i class="fas fa-wallet"></i>
+                    <span>Apple/Google Pay</span>
+                </div>
+            </div>
+            
+            <div class="card--container" id="card-preview">
+                <div class="card _front">
+                    <div class="front_top">
+                        <div class="top_chip">
+                            <img src="../Images/chip-card.png" alt="credit card chip">
+                        </div>
+                        <div class="top_logo">
+                            <img src="../Images/mastercard.png" alt="credit card logo" id="card-brand-logo">
+                        </div>
                     </div>
-                    <div class="bottom_expiration">
-                        <span>Expires:</span><br />
-                        <span class="cardDate"><span class="month">MM</span>/<span class="year">YY</span></span>
+                    <div class="front_middle">
+                        <div class="cardNumber">**** **** **** ****</div>
+                    </div>
+                    <div class="front_bottom">
+                        <div class="bottom_name">
+                            <span>Card Holder:</span><br />
+                            <span class="cardName">&nbsp;</span>
+                        </div>
+                        <div class="bottom_expiration">
+                            <span>Expires:</span><br />
+                            <span class="cardDate"><span class="month">MM</span>/<span class="year">YY</span></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="form-container">
-            <h2>Payment Details</h2>
+            <div class="payment-steps">
+                <div class="step active">1. Details</div>
+                <div class="step">2. Verify</div>
+                <div class="step">3. Confirm</div>
+            </div>
+            
             <div id="flight-summary">
+                <h3>Flight Summary</h3>
                 <p><strong>Airline:</strong> <span id="airline"></span></p>
                 <p><strong>Departure:</strong> <span id="departure"></span></p>
                 <p><strong>Arrival:</strong> <span id="arrival"></span></p>
-                <p><strong>Price:</strong> <span id="price"></span></p>
+                <p><strong>Price:</strong> <span id="price" class="highlight-price"></span></p>
             </div>
 
-            <form id="payment-form">
-                <label for="card-name">Cardholder Name</label>
-                <input type="text" id="card-name" required>
+            <!-- Credit Card Form -->
+            <form id="payment-form" class="payment-method-form active" data-method="credit-card">
+                <div class="form-group">
+                    <label for="card-name">Cardholder Name</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="card-name" required>
+                    </div>
+                    <span class="validation-message" id="name-validation"></span>
+                </div>
 
-                <label for="card-number">Card Number</label>
-                <input type="text" id="card-number" maxlength="19" required>
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-credit-card"></i>
+                        <input type="text" id="card-number" maxlength="19" required>
+                        <span class="card-type-indicator" id="card-type"></span>
+                    </div>
+                    <span class="validation-message" id="number-validation"></span>
+                </div>
 
-                <label for="expiry-date">Expiry Date</label>
-                <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="expiry-date">Expiry Date</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                        </div>
+                        <span class="validation-message" id="expiry-validation"></span>
+                    </div>
 
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" maxlength="3" required>
+                    <div class="form-group half">
+                        <label for="cvv">CVV</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="text" id="cvv" maxlength="4" required>
+                            <span class="cvv-tooltip" id="cvv-info"><i class="fas fa-question-circle"></i></span>
+                        </div>
+                        <span class="validation-message" id="cvv-validation"></span>
+                    </div>
+                </div>
 
-                <button type="button" id="payButton">Pay Now</button>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="save-card">
+                    <label for="save-card">Save card for future payments</label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+                </div>
+
+                <button type="button" id="payButton" class="pay-button">
+                    <span class="button-text">Pay Securely</span>
+                    <span class="button-price" id="button-price"></span>
+                    <i class="fas fa-lock"></i>
+                </button>
             </form>
 
-            <p id="payment-status"></p>
+            <!-- PayPal Form -->
+            <form id="paypal-form" class="payment-method-form" data-method="paypal">
+                <div class="paypal-info">
+                    <i class="fab fa-paypal paypal-icon"></i>
+                    <p>You will be redirected to PayPal to complete your payment securely.</p>
+                </div>
+                <button type="button" id="paypalButton" class="pay-button paypal-button">
+                    <span class="button-text">Continue to PayPal</span>
+                    <span class="button-price" id="paypal-button-price"></span>
+                    <i class="fab fa-paypal"></i>
+                </button>
+            </form>
+
+            <!-- Digital Wallet Form -->
+            <form id="digital-wallet-form" class="payment-method-form" data-method="digital-wallet">
+                <div class="wallet-options">
+                    <div class="wallet-option">
+                        <i class="fab fa-apple-pay"></i>
+                        <span>Apple Pay</span>
+                    </div>
+                    <div class="wallet-option">
+                        <i class="fab fa-google-pay"></i>
+                        <span>Google Pay</span>
+                    </div>
+                </div>
+                <p class="wallet-info">Choose your preferred digital wallet to complete payment.</p>
+                <button type="button" id="walletButton" class="pay-button wallet-button">
+                    <span class="button-text">Pay with Digital Wallet</span>
+                    <span class="button-price" id="wallet-button-price"></span>
+                    <i class="fas fa-wallet"></i>
+                </button>
+            </form>
+
+            <div id="payment-status" class="payment-status"></div>
+            
+            <div class="security-info">
+                <p><i class="fas fa-lock"></i> Your payment information is encrypted and secure</p>
+                <div class="security-logos">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg" alt="Visa" class="payment-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mastercard/mastercard-original.svg" alt="Mastercard" class="payment-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="Apple Pay" class="payment-logo">
+                    <i class="fab fa-cc-paypal payment-logo-icon"></i>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="../js/payment.js"></script>
+    <!-- 2FA Verification Modal -->
+    <div class="modal" id="verification-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shield-alt"></i> Security Verification</h3>
+                <button class="close-modal" id="close-verification">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>For your security, we've sent a verification code to your registered mobile number.</p>
+                <div class="verification-code-container">
+                    <input type="text" maxlength="1" class="verification-input" data-index="1">
+                    <input type="text" maxlength="1" class="verification-input" data-index="2">
+                    <input type="text" maxlength="1" class="verification-input" data-index="3">
+                    <input type="text" maxlength="1" class="verification-input" data-index="4">
+                    <input type="text" maxlength="1" class="verification-input" data-index="5">
+                    <input type="text" maxlength="1" class="verification-input" data-index="6">
+                </div>
+                <p class="verification-timer">Code expires in: <span id="timer">02:00</span></p>
+                <button id="verify-code-btn" class="verify-button">Verify Code</button>
+                <p class="resend-code">Didn't receive a code? <a href="#" id="resend-code">Resend Code</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/payment.js"></script>
 </body>
 </html>

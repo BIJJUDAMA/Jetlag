@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jetlag - Booking Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/gif" href="../Images/airplane-small.png">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-light: #e8f0fe;
+            --secondary: #0d47a1;
+            --accent: #ff6d00;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --gray: #9e9e9e;
+            --border: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation Styles */
+        nav {
+            background-color: var(--dark);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .booking-details {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .booking-id {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .status-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+        
+        .status-confirmed {
+            background: #e6f7ee;
+            color: var(--success);
+        }
+        
+        .status-pending {
+            background: #fff8e6;
+            color: var(--warning);
+        }
+        
+        .status-cancelled {
+            background: #ffebee;
+            color: var(--danger);
+        }
+        
+        .flight-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .flight-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+        }
+        
+        .flight-route {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .flight-route .airport {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .flight-route .arrow {
+            margin: 0 1rem;
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+        
+        .flight-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .detail-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .detail-item .label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 0.2rem;
+        }
+        
+        .detail-item .value {
+            font-weight: 600;
+        }
+        
+        .passenger-info {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.7s ease;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .passenger-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .passenger-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .passenger-card .name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .passenger-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .btn i {
+            margin-right: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--danger);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+            outline: none;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border);
+            gap: 1rem;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .flight-info,
+            .passenger-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
+                justify-content: center;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="flightbooking.html">Book a Flight</a></li>
+            <li><a href="flightstatus.html">Flight Status</a></li>
+            <li><a href="managebookings.html">Manage Booking</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+    </nav>
+    
+    <header class="header">
+        <h1>Booking Details</h1>
+        <p>View and manage your flight booking information</p>
+    </header>
+    
+    <div class="container">
+        <div class="booking-details">
+            <div class="booking-header">
+                <div class="booking-id">Booking ID: <span id="bookingIdDisplay">SKJ-789456</span></div>
+                <div class="status-badge status-confirmed" id="statusBadge">Confirmed</div>
+            </div>
+            
+            <div class="flight-info">
+                <div class="flight-card">
+                    <h3>Outbound Flight</h3>
+                    <div class="flight-route">
+                        <div class="airport">JFK</div>
+                        <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="airport">LAX</div>
+                    </div>
+                    <div class="flight-details">
+                        <div class="detail-item">
+                            <div class="label">Date</div>
+                            <div class="value">Dec 15, 2023</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Flight Number</div>
+                            <div class="value">SJ-1234</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Departure</div>
+                            <div class="value">13:00</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Arrival</div>
+                            <div class="value">16:30</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Duration</div>
+                            <div class="value">6h 30m</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Cabin Class</div>
+                            <div class="value">Economy</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flight-card">
+                    <h3>Return Flight</h3>
+                    <div class="flight-route">
+                        <div class="airport">LAX</div>
+                        <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="airport">JFK</div>
+                    </div>
+                    <div class="flight-details">
+                        <div class="detail-item">
+                            <div class="label">Date</div>
+                            <div class="value">Dec 22, 2023</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Flight Number</div>
+                            <div class="value">SJ-1235</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Departure</div>
+                            <div class="value">14:15</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Arrival</div>
+                            <div class="value">18:45</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Duration</div>
+                            <div class="value">7h 30m</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Cabin Class</div>
+                            <div class="value">Economy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="passenger-info">
+            <h2 class="section-title">Passenger Information</h2>
+            <div class="passenger-grid">
+                <div class="passenger-card">
+                    <div class="name">Michael Brown</div>
+                    <div class="passenger-details">
+                        <div class="detail-item">
+                            <div class="label">Passenger Type</div>
+                            <div class="value">Adult</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Seat (Outbound)</div>
+                            <div class="value">24B</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Seat (Return)</div>
+                            <div class="value">18A</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Meal Preference</div>
+                            <div class="value">Vegetarian</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Special Assistance</div>
+                            <div class="value">None</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-outline" id="changeSeatBtn">
+                <i class="fas fa-chair"></i> Change Seats
+            </button>
+            <button class="btn btn-outline" id="changeDateBtn">
+                <i class="fas fa-calendar-alt"></i> Change Date
+            </button>
+            <button class="btn btn-primary" id="printBtn">
+                <i class="fas fa-print"></i> Print Itinerary
+            </button>
+            <button class="btn btn-danger" id="cancelBtn">
+                <i class="fas fa-times"></i> Cancel Booking
+            </button>
+        </div>
+    </div>
+    
+    <!-- Change Seat Modal -->
+    <div class="modal" id="changeSeatModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Change Seats</h3>
+                <button class="close-modal" onclick="closeModal('changeSeat')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Select Flight</label>
+                    <select id="flightSelect">
+                        <option value="outbound">Outbound: JFK to LAX (Dec 15)</option>
+                        <option value="return">Return: LAX to JFK (Dec 22)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Current Seat</label>
+                    <input type="text" value="24B" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label>New Seat</label>
+                    <select id="seatSelect">
+                        <option value="">Select a seat</option>
+                        <option value="12A">12A (Window)</option>
+                        <option value="12B">12B (Middle)</option>
+                        <option value="12C">12C (Aisle)</option>
+                        <option value="14D">14D (Aisle)</option>
+                        <option value="14E">14E (Middle)</option>
+                        <option value="14F">14F (Window)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Seat Map</label>
+                    <div style="background: #f5f5f5; padding: 1rem; border-radius: 5px; text-align: center;">
+                        <p>Seat map visualization would be displayed here</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-outline" onclick="closeModal('changeSeat')">Cancel</button>
+                <button class="btn btn-primary" id="confirmSeatChange">Confirm Change</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Change Date Modal -->
+    <div class="modal" id="changeDateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Change Flight Date</h3>
+                <button class="close-modal" onclick="closeModal('changeDate')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Select Flight</label>
+                    <select id="flightDateSelect">
+                        <option value="outbound">Outbound: JFK to LAX (Dec 15)</option>
+                        <option value="return">Return: LAX to JFK (Dec 22)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Current Date</label>
+                    <input type="text" value="Dec 15, 2023" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label>New Date</label>
+                    <input type="date" id="newDate">
+                </div>
+                
+                <div class="form-group">
+                    <label>Available Flights</label>
+                    <select id="availableFlights">
+                        <option value="">Select a flight</option>
+                        <option value="SJ-1234-0900">SJ-1234 - 09:00 AM</option>
+                        <option value="SJ-1236-1300">SJ-1236 - 01:00 PM</option>
+                        <option value="SJ-1238-1700">SJ-1238 - 05:00 PM</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Change Fee</label>
+                    <input type="text" value="$150.00" readonly>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-outline" onclick="closeModal('changeDate')">Cancel</button>
+                <button class="btn btn-primary" id="confirmDateChange">Confirm Change</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cancel Booking Modal -->
+    <div class="modal" id="cancelBookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Cancel Booking</h3>
+                <button class="close-modal" onclick="closeModal('cancelBooking')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--warning); margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 1rem;">Are you sure you want to cancel this booking?</h3>
+                    <p>This action cannot be undone. Cancellation fees may apply.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>Booking ID</label>
+                    <input type="text" value="SKJ-789456" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label>Cancellation Fee</label>
+                    <input type="text" value="$200.00" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label>Refund Amount</label>
+                    <input type="text" value="$450.00" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label>Reason for Cancellation</label>
+                    <select id="cancellationReason">
+                        <option value="">Select a reason</option>
+                        <option value="change_plans">Change of Plans</option>
+                        <option value="emergency">Emergency</option>
+                        <option value="better_deal">Found a Better Deal</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Additional Comments</label>
+                    <textarea rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-outline" onclick="closeModal('cancelBooking')">Go Back</button>
+                <button class="btn btn-danger" id="confirmCancellation">Confirm Cancellation</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 SkyJourney Airlines. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+    
+    <!-- Load the bookingdetails.js file -->
+    <script src="../JS/bookingdetails.js"></script>
