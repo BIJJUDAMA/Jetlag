@@ -3,122 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jetlag - A modern flight booking platform for seamless travel planning">
-    <title>Jetlag - Modern Flight Booking</title>
+    <title>Jetlag</title>
     <link rel="icon" type="image/gif" href="Images/airplane-small.png">
-    <link rel="stylesheet" href="CSS/common.css">
-    <link rel="stylesheet" href="CSS/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="CSS\index.css">
 </head>
 <body>
     <div class="preloader">
         <h1>WELCOME TO JETLAG</h1>
     </div>
     
-    <header class="site-header">
+    <header>
         <h1>JETLAG</h1>
         <p>Where Every Journey Feels Effortless!</p>
     </header>
     
-    <nav class="main-nav">
+    <nav>
         <ul>
-            <li><a href="HTML/flightbooking.html"><i class="fas fa-plane-departure"></i> Book a Flight</a></li>
-            <li><a href="HTML/flightstatus.html"><i class="fas fa-info-circle"></i> Flight Status</a></li>
-            <li><a href="HTML/managebookings.html"><i class="fas fa-calendar-alt"></i> Manage Booking</a></li>
-            <li><a href="HTML/aboutus.html"><i class="fas fa-users"></i> About Us</a></li>
-            <li><a href="HTML/contactus.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
-            <li><a href="HTML/loginpage.html" data-auth-link="logged-out"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-            <li><a href="#" data-auth-link="logged-in" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="HTML/flightbooking.html">Book a Flight</a></li>
+            <li><a href="HTML/flightstatus.html">Flight Status</a></li>
+            <li><a href="HTML/managebookings.html">Manage Booking</a></li>
+            <li><a href="HTML/aboutus.html">About Us</a></li>
+            <li><a href="HTML/contactus.html">Contact Us</a></li>
         </ul>
     </nav>
 
-    <main>
-        <section class="hero-section">
-            <div class="container">
-                <div class="hero-content animate-fadeInUp">
-                    <h2>Explore the World with Jetlag</h2>
-                    <p>Find the best deals and explore the world with comfort and convenience.</p>
-                    <div class="hero-cta">
-                        <a href="HTML/flightbooking.html" class="btn btn-accent">Book Now</a>
-                        <a href="HTML/flightstatus.html" class="btn btn-outline">Check Flight Status</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="features-section">
-            <div class="container">
-                <h2 class="text-center">Why Choose Jetlag?</h2>
-                <div class="features-grid">
-                    <div class="feature-card card">
-                        <div class="feature-icon"><i class="fas fa-globe"></i></div>
-                        <h3>Global Destinations</h3>
-                        <p>Access flights to over 190 countries and 1,000+ destinations worldwide.</p>
-                    </div>
-                    <div class="feature-card card">
-                        <div class="feature-icon"><i class="fas fa-tag"></i></div>
-                        <h3>Best Price Guarantee</h3>
-                        <p>Find the lowest prices with our price match promise.</p>
-                    </div>
-                    <div class="feature-card card">
-                        <div class="feature-icon"><i class="fas fa-headset"></i></div>
-                        <h3>24/7 Support</h3>
-                        <p>Our customer service team is available around the clock.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="destinations-section bg-light">
-            <div class="container">
-                <h2 class="text-center">Popular Destinations</h2>
-                <div class="destinations-grid">
-                    <div class="destination-card">
-                        <div class="destination-image" style="background-image: url('https://source.unsplash.com/300x200/?new-york')"></div>
-                        <div class="destination-content">
-                            <h3>New York</h3>
-                            <p>Explore the Big Apple</p>
-                            <a href="HTML/flightbooking.html" class="btn btn-sm">Book Now</a>
-                        </div>
-                    </div>
-                    <div class="destination-card">
-                        <div class="destination-image" style="background-image: url('https://source.unsplash.com/300x200/?paris')"></div>
-                        <div class="destination-content">
-                            <h3>Paris</h3>
-                            <p>Experience the City of Love</p>
-                            <a href="HTML/flightbooking.html" class="btn btn-sm">Book Now</a>
-                        </div>
-                    </div>
-                    <div class="destination-card">
-                        <div class="destination-image" style="background-image: url('https://source.unsplash.com/300x200/?tokyo')"></div>
-                        <div class="destination-content">
-                            <h3>Tokyo</h3>
-                            <p>Discover Japanese culture</p>
-                            <a href="HTML/flightbooking.html" class="btn btn-sm">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer will be dynamically added by common.js -->
-
-    <script src="JS/common.js"></script>
-    <script>
-        // Add logout functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const logoutBtn = document.getElementById('logout-btn');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (window.JetlagUtils) {
-                        window.JetlagUtils.logoutUser();
-                        window.JetlagUtils.showNotification('You have been logged out successfully', 'success');
-                    }
-                });
-            }
-        });
-    </script>
+    <div class="block"> 
+        <div class="block-content">
+        <h2>Explore the World with Jetlag</h2>
+        <p>Find the best deals and explore the world with comfort and convenience.</p>
+        <a href="HTML/flightbooking.html" class="btn">Book Now</a>
+        </div>
+    </div>
 </body>
 </html>
