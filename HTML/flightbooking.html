@@ -3,132 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Book your next flight with Jetlag - Find the best deals on flights worldwide">
-    <title>Jetlag - Book Your Flight</title>
+    <title>Document</title>
     <link rel="icon" type="image/gif" href="../Images/airplane-small.png">
-    <link rel="stylesheet" href="../CSS/common.css">
-    <link rel="stylesheet" href="../CSS/flightbooking.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="../JS/flightbooking.js" defer></script>
+    <link rel="stylesheet" href="..\CSS\flightbooking.css">
 </head>
 <body>
-<header class="site-header">
-    <h1>JETLAG</h1>
-    <p>Where Every Journey Feels Effortless!</p>
-</header>
 
-<nav class="main-nav">
-    <ul>
-        <li><a href="flightbooking.html" class="active"><i class="fas fa-plane-departure"></i> Book a Flight</a></li>
-        <li><a href="flightstatus.html"><i class="fas fa-info-circle"></i> Flight Status</a></li>
-        <li><a href="managebookings.html"><i class="fas fa-calendar-alt"></i> Manage Booking</a></li>
-        <li><a href="aboutus.html"><i class="fas fa-users"></i> About Us</a></li>
-        <li><a href="contactus.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
-        <li><a href="loginpage.html" data-auth-link="logged-out"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-        <li><a href="#" data-auth-link="logged-in" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-    </ul>
-</nav>
-
-<main class="container">
-
-<div class="booking-container">
-    <div class="booking-intro">
-        <h1>BOOK YOUR NEXT FLIGHT</h1>
-        <p>Find the best deals on flights to destinations worldwide. Enter your travel details below to get started.</p>
-    </div>
+<form action="searchresult.html" method="GET" class="booking-form">
+    <h1>BOOK YOUR NEXT FLIGHT</h1>
     
-    <div class="booking-content">
-        <div class="booking-form-container card">
-            <form id="bookingForm" action="searchresult.html" method="GET" class="booking-form">
-                <div class="form-group">
-                    <label for="from"><i class="fas fa-plane-departure"></i> From</label>
-                    <input type="text" id="from" name="from" class="form-control" placeholder="City or Airport" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="to"><i class="fas fa-plane-arrival"></i> To</label>
-                    <input type="text" id="to" name="to" class="form-control" placeholder="City or Airport" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="date"><i class="fas fa-calendar-alt"></i> Departure Date</label>
-                    <input type="date" id="date" name="date" class="form-control" required>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="class"><i class="fas fa-chair"></i> Class</label>
-                        <select id="class" name="class" class="form-control" required>
-                            <option value="" disabled selected>Select Class</option>
-                            <option value="Economy">Economy</option>
-                            <option value="Business">Business</option>
-                            <option value="First Class">First Class</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="passengers"><i class="fas fa-users"></i> Passengers</label>
-                        <input type="number" id="passengers" name="passengers" class="form-control" placeholder="Number of passengers" min="1" max="10" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <button type="submit" class="btn btn-accent"><i class="fas fa-search"></i> Search Flights</button>
-                </div>
-            </form>
-        </div>
-        
-        <div class="flight-map-container card">
-            <h3><i class="fas fa-map-marked-alt"></i> Flight Map</h3>
-            <div id="flightMap" class="flight-map"></div>
-            <p class="map-info">Interactive map will display your route once you select origin and destination.</p>
-        </div>
+    <div class="form-row">
+        <input type="text" name="from" placeholder="From" required>
+        <input type="text" name="to" placeholder="To" required>
     </div>
+
     
-    <div class="booking-features">
-        <div class="feature">
-            <div class="feature-icon"><i class="fas fa-tag"></i></div>
-            <h3>Best Price Guarantee</h3>
-            <p>We match any lower price you find elsewhere.</p>
-        </div>
-        <div class="feature">
-            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>Secure Booking</h3>
-            <p>Your payment and personal information are always protected.</p>
-        </div>
-        <div class="feature">
-            <div class="feature-icon"><i class="fas fa-exchange-alt"></i></div>
-            <h3>Flexible Changes</h3>
-            <p>Change your flight with minimal or no fees.</p>
-        </div>
+    <div class="form-row full-width">
+        <input type="date" name="date" required>
     </div>
-</div>
-</main>
 
-<footer class="site-footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>About Jetlag</h3>
-            <p>Jetlag is your trusted partner for hassle-free flight bookings worldwide. We offer competitive prices and exceptional service.</p>
-        </div>
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="flightbooking.html">Book a Flight</a></li>
-                <li><a href="flightstatus.html">Flight Status</a></li>
-                <li><a href="managebookings.html">Manage Booking</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>Contact Us</h3>
-            <p><i class="fas fa-envelope"></i> support@jetlag.com</p>
-            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-        </div>
+   
+    <div class="form-row">
+        <select name="class" required>
+            <option value="" disabled selected>Class</option>
+            <option value="Economy">Economy</option>
+            <option value="Business">Business</option>
+            <option value="First Class">First Class</option>
+        </select>
+        <input type="number" name="passengers" placeholder="Passengers" min="1" required>
     </div>
-    <div class="footer-bottom">
-        <p>&copy; 2023 Jetlag. All rights reserved.</p>
-    </div>
-</footer>
 
+    
+    <div class="form-row full-width">
+        <button type="submit">Book Now</button>
+    </div>
+</form>
 </body>
 </html>
