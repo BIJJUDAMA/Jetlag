@@ -13,7 +13,7 @@ It's deployed on Electron as a web application
 
 ### 🏠 Home Page
 
-- **🔍 Search Panel** – Prominent flight search functionality for **one-way, round-trip, and multi-city** options.
+- **🔍 Search Panel** – Prominent flight search functionality 
 - **🔗 Quick Links** – Easy navigation to check-in, manage bookings, and view flight status.
 
 ### 🔍 Search Results Page
@@ -29,11 +29,6 @@ It's deployed on Electron as a web application
 - **Summarized booking details**.
 - **Unique reference number** for tracking.
 
-### 📞 Customer Support
-
-- **24/7 live chat**, email, and toll-free contact options.
-- **Comprehensive FAQ section**.
-- **AI-powered chatbot** for real-time assistance.
 
 ### 🎨 User Experience & Design Philosophy
 
@@ -51,7 +46,7 @@ It's deployed on Electron as a web application
 ---
 
 ## 💻 Getting Started 
-1️⃣ **Run the Game**
+1️⃣ **Run the Web App**
    - Open a terminal and navigate to the project folder.
    - Run the following command in the terminal
      ```sh
@@ -72,7 +67,7 @@ JetLag/
 ├──HTML
 │   ├──aboutus.html
 │   ├──confirmation.html
-│   ├──contackus.html
+│   ├──contactus.html
 │   ├──flightbooking.html
 │   ├──managebookings.html
 │   ├──payment.html
